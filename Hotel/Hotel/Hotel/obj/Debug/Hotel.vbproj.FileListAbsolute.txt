@@ -1,0 +1,7 @@
+C:\Users\Matia\Desktop\PAV\Hotel\Hotel\Hotel\obj\Debug\Hotel.vbprojResolveAssemblyReference.cache
+C:\Users\Matia\Desktop\PAV\Hotel\Hotel\Hotel\obj\Debug\Hotel.AltaHuesped.resources
+C:\Users\Matia\Desktop\PAV\Hotel\Hotel\Hotel\obj\Debug\Hotel.Form1.resources
+C:\Users\Matia\Desktop\PAV\Hotel\Hotel\Hotel\obj\Debug\Hotel.AltaEmpleado.resources
+C:\Users\Matia\Desktop\PAV\Hotel\Hotel\Hotel\obj\Debug\Hotel.Menu.resources
+C:\Users\Matia\Desktop\PAV\Hotel\Hotel\Hotel\obj\Debug\Hotel.vbproj.GenerateResource.Cache
+C:\Users\Matia\Desktop\PAV\Hotel\Hotel\Hotel\bin\Debug\Hotel.exe.config
