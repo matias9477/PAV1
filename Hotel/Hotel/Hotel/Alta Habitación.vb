@@ -9,8 +9,7 @@
         rechazado
     End Enum
     Dim accion As estado = estado.modificar
-    'AGREGAR LA CADENA DE CONEXION!!!!!
-    Dim string_conexion As String = "Provider=SQLOLEDB.1;Password=matias9477;Persist Security Info=True;User ID=sa;Initial Catalog=Hotel BD;Data Source=localhost\SQLEXPRESS"
+    Dim string_conexion As String = "Provider=SQLOLEDB.1;Password=mercedeslucila;Persist Security Info=True;User ID=sa;Initial Catalog=HOTEL;Data Source=localhost\SQLEXPRESS"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         carga_combo(Me.Cmb_hotel, Me.leo_tabla("HOTELES"), "nombre_hotel", "hotel")
@@ -27,10 +26,15 @@
 
 
     Private Sub carga_combo(ByRef combo As ComboBox, ByVal datos As Data.DataTable, ByVal pk As String, ByVal descripcion As String)
-        combo.Items.Clear()
-        combo.DataSource = datos
-        combo.ValueMember = pk
-        combo.DisplayMember = descripcion
+        If (combo.Items.Count > 0) Then
+            combo.SelectedIndex = -1
+        Else
+            combo.Items.Clear()
+            combo.DataSource = datos
+            combo.ValueMember = pk
+            combo.DisplayMember = descripcion
+        End If
+
     End Sub
 
     Private Function leo_tabla(ByVal nombre_tabla As String) As Data.DataTable
@@ -53,16 +57,6 @@
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
     End Sub
-
-    'Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-    '    If MessageBox.Show("Está seguro que quiere salir del formulario", "Importante",
-    '        MessageBoxButtons.OKCancel, MessageBoxIcon.Question) =
-    '        Windows.Forms.DialogResult.OK Then
-    '        e.Cancel = False
-    '    Else
-    '        e.Cancel = True
-    '    End If
-    'End Sub
 
 
     'PARA BUSCARRR
@@ -98,10 +92,9 @@
                     MessageBox.Show("La habitacion no existe", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
 
                 Else
-                    Me.BtnBuscar.Enabled = False
+
                     Me.accion = estado.modificar
                     MessageBox.Show("La habitacion exite", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                    BtnNuevo.Enabled = False
                     Txt_nombre_habitacion.Enabled = True
                     chebox_disponible.Enabled = True
                     txt_descr_habit.Enabled = True
@@ -131,22 +124,25 @@
     'PARA CANCELARR Y BORRARR 
 
     Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click
-
+        Dim consulta As String = ""
         If MessageBox.Show("Está seguro que desea borrar ese registro", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) = Windows.Forms.DialogResult.OK Then
 
             Dim conexion As New Data.OleDb.OleDbConnection
             Dim cmd As New Data.OleDb.OleDbCommand
-            conexion.ConnectionString = Me.string_conexion
-            conexion.Open()
-            cmd.Connection = conexion
-            cmd.CommandType = CommandType.Text
-            'corregir union de la consulta a la BD 
-            cmd.CommandText = "delete from HOTELES ho join habitacion ha on ha.id_hotel = ho.id_hotel where id_hotel = '" & Me.Cmb_hotel.SelectedValue
-            '"and ha.nro_habitacion = " & Me.Txt_nro_habitacion.Text
+            If accion = estado.modificar Then
 
-            cmd.ExecuteNonQuery()
-            conexion.Close()
 
+                conexion.ConnectionString = Me.string_conexion
+                conexion.Open()
+                cmd.Connection = conexion
+
+                consulta = "delete ha from HABITACIONES ha Join HOTELES ho on ha.id_hotel = ho.id_hotel"
+                consulta &= "where ha.id_habitacion= "
+                cmd.CommandType = CommandType.Text
+                cmd.CommandText = consulta
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+            End If
         End If
     End Sub
 
@@ -184,7 +180,7 @@
         Dim tabla As New Data.DataTable
         conexion.ConnectionString = Me.string_conexion
         conexion.Open()
-        consulta = "select * from HABITACIONES ha join HOTELES ho on ha.id_hotel=ho.id_hotel where ho.nombre_hotel = '" & Me.cmb_hotel_reg.SelectedValue & "'"
+        consulta = "Select * from HABITACIONES ha join HOTELES ho On ha.id_hotel=ho.id_hotel where ho.nombre_hotel = '" & Me.cmb_hotel_reg.SelectedValue & "'"
         consulta &= " and ha.id_habitacion = " & Me.txtNroHab.Text
         cmd.CommandType = CommandType.Text
         cmd.CommandText = consulta
@@ -231,7 +227,7 @@
                     cmd.ExecuteNonQuery()
                     conexion.Close()
                     MessageBox.Show("Se ha guardado la habitacion", "importante", MessageBoxButtons.OK)
-                    Me.Close()
+
                 Else
                     MessageBox.Show("Ya existe la habitación", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
@@ -239,55 +235,51 @@
                 Dim disponible As Integer = 0
 
                 If Me.chebox_disponible.Checked = True Then
-                        disponible = 1
-                    End If
+                    disponible = 1
+                End If
 
                 conexion.ConnectionString = Me.string_conexion
-                    conexion.Open()
+                conexion.Open()
 
-                    modificacion = "DECLARE @valor int "
-                    modificacion &= "SELECT @valor = id_hotel FROM HOTELES WHERE nombre_hotel = '" & Me.cmb_hotel_reg.SelectedValue & "'"
-                    modificacion &= "Update HABITACIONES "
-                    modificacion &= "Set id_habitacion = '" & Me.txtNroHab.Text & "'"
-                    modificacion &= ", nombre = '" & Me.Txt_nombre_habitacion.Text & "'"
-                    modificacion &= ", descripcion = '" & Me.txt_descr_habit.Text & "'"
-                    modificacion &= ", disponible = '" & disponible & "'"
-                    modificacion &= ", id_hotel = @valor"
-                    modificacion &= " where id_habitacion= " & Me.Txt_nro_habitacion.Text
+                modificacion = "DECLARE @valor int "
+                modificacion &= "SELECT @valor = id_hotel FROM HOTELES WHERE nombre_hotel = '" & Me.cmb_hotel_reg.SelectedValue & "'"
+                modificacion &= "Update HABITACIONES "
+                modificacion &= "Set id_habitacion = '" & Me.txtNroHab.Text & "'"
+                modificacion &= ", nombre = '" & Me.Txt_nombre_habitacion.Text & "'"
+                modificacion &= ", descripcion = '" & Me.txt_descr_habit.Text & "'"
+                modificacion &= ", disponible = '" & disponible & "'"
+                modificacion &= ", id_hotel = @valor"
+                modificacion &= " where id_habitacion= " & Me.Txt_nro_habitacion.Text
 
                 cmd.CommandType = CommandType.Text
-                    cmd.CommandText = modificacion
-                    cmd.Connection = conexion
-                    cmd.ExecuteNonQuery()
-                    conexion.Close()
-                    Me.Close()
-                    MessageBox.Show("Se ha modificado la habitación", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                cmd.CommandText = modificacion
+                cmd.Connection = conexion
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+
+                MessageBox.Show("Se ha modificado la habitación", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
 
             End If
         End If
     End Sub
 
     Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
-
         Me.accion = estado.insertar
-            Txt_nombre_habitacion.Enabled = True
-            chebox_disponible.Enabled = True
-            txt_descr_habit.Enabled = True
-            txtNroHab.Enabled = True
-            cmb_hotel_reg.Enabled = True
-            BtnGuardar.Enabled = True
-            BtnCancelar.Enabled = True
+        Txt_nro_habitacion.Text = ""
+        Cmb_hotel.SelectedIndex = -1
+        Txt_nombre_habitacion.Enabled = True
+        Txt_nombre_habitacion.Text = ""
+        chebox_disponible.Enabled = True
+        chebox_disponible.Checked = False
+        txt_descr_habit.Enabled = True
+        txt_descr_habit.Text = ""
+        txtNroHab.Enabled = True
+        txtNroHab.Text = ""
+        cmb_hotel_reg.Enabled = True
+        cmb_hotel_reg.SelectedIndex = -1
+        BtnGuardar.Enabled = True
+        BtnCancelar.Enabled = True
         carga_combo(Me.cmb_hotel_reg, Me.leo_tabla("HOTELES"), "nombre_hotel", "hotel")
-        For Each objeto As System.Windows.Forms.Control In Me.Controls
-            If TypeOf objeto Is TextBox Then
-                objeto.Enabled = True
-                objeto.Text = ""
-            End If
-            If TypeOf objeto Is ComboBox Then
-                Dim actual As ComboBox = objeto
-                actual.SelectedIndex = -1
-                actual.Enabled = True
-            End If
-        Next
+
     End Sub
 End Class

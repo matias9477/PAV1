@@ -37,11 +37,11 @@ Partial Class AltaEmpleado
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.Txt_nombre = New System.Windows.Forms.TextBox()
         Me.Txt_apellido = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txt_nro_doc_reg = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cmb_tipo_doc_reg = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.BtnSalir = New System.Windows.Forms.Button()
         Me.BtnCancelar = New System.Windows.Forms.Button()
@@ -103,11 +103,11 @@ Partial Class AltaEmpleado
         Me.GroupBox1.Controls.Add(Me.DateTimePicker1)
         Me.GroupBox1.Controls.Add(Me.Txt_nombre)
         Me.GroupBox1.Controls.Add(Me.Txt_apellido)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.txt_nro_doc_reg)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.ComboBox1)
+        Me.GroupBox1.Controls.Add(Me.cmb_tipo_doc_reg)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Location = New System.Drawing.Point(15, 81)
         Me.GroupBox1.Name = "GroupBox1"
@@ -188,14 +188,14 @@ Partial Class AltaEmpleado
         Me.Txt_apellido.Size = New System.Drawing.Size(162, 20)
         Me.Txt_apellido.TabIndex = 22
         '
-        'TextBox1
+        'txt_nro_doc_reg
         '
-        Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(345, 48)
-        Me.TextBox1.MaxLength = 10
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(129, 20)
-        Me.TextBox1.TabIndex = 21
+        Me.txt_nro_doc_reg.Enabled = False
+        Me.txt_nro_doc_reg.Location = New System.Drawing.Point(345, 48)
+        Me.txt_nro_doc_reg.MaxLength = 10
+        Me.txt_nro_doc_reg.Name = "txt_nro_doc_reg"
+        Me.txt_nro_doc_reg.Size = New System.Drawing.Size(129, 20)
+        Me.txt_nro_doc_reg.TabIndex = 21
         '
         'Label4
         '
@@ -224,14 +224,14 @@ Partial Class AltaEmpleado
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Apellido"
         '
-        'ComboBox1
+        'cmb_tipo_doc_reg
         '
-        Me.ComboBox1.Enabled = False
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(99, 48)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBox1.TabIndex = 19
+        Me.cmb_tipo_doc_reg.Enabled = False
+        Me.cmb_tipo_doc_reg.FormattingEnabled = True
+        Me.cmb_tipo_doc_reg.Location = New System.Drawing.Point(99, 48)
+        Me.cmb_tipo_doc_reg.Name = "cmb_tipo_doc_reg"
+        Me.cmb_tipo_doc_reg.Size = New System.Drawing.Size(121, 21)
+        Me.cmb_tipo_doc_reg.TabIndex = 19
         '
         'Label6
         '
@@ -279,7 +279,7 @@ Partial Class AltaEmpleado
         Me.BtnNuevo.TabIndex = 18
         Me.BtnNuevo.UseVisualStyleBackColor = True
         '
-        'frm_Empleado
+        'AltaEmpleado
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -294,7 +294,7 @@ Partial Class AltaEmpleado
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Cmb_tipo_doc)
         Me.Controls.Add(Me.Label1)
-        Me.Name = "frm_Empleado"
+        Me.Name = "AltaEmpleado"
         Me.Text = "Empleados"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -317,11 +317,11 @@ Partial Class AltaEmpleado
     Friend WithEvents DateTimePicker1 As DateTimePicker
     Friend WithEvents Txt_nombre As TextBox
     Friend WithEvents Txt_apellido As TextBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txt_nro_doc_reg As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmb_tipo_doc_reg As ComboBox
     Friend WithEvents Label6 As Label
     Friend WithEvents BtnSalir As Button
     Friend WithEvents BtnCancelar As Button

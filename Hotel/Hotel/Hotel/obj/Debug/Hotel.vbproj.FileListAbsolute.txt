@@ -19,18 +19,3 @@ C:\Users\Valter Simes\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.pdb
 C:\Users\Valter Simes\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.frm_Huesped.resources
 C:\Users\Valter Simes\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.frm_instalaciones.resources
 C:\Users\Valter Simes\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.AltaEmpleado.resources
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\bin\Debug\Hotel.exe.config
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.exe
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.xml
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.pdb
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\bin\Debug\Hotel.exe
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\bin\Debug\Hotel.pdb
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\bin\Debug\Hotel.xml
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.vbprojResolveAssemblyReference.cache
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.frm_Huesped.resources
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.frm_habitacion.resources
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.AltaEmpleado.resources
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.frm_instalaciones.resources
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.frm_menu.resources
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.Resources.resources
-C:\Users\Matia\Desktop\Hotel\Hotel\Hotel\obj\Debug\Hotel.vbproj.GenerateResource.Cache

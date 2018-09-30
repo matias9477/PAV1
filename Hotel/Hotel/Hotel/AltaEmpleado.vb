@@ -5,14 +5,16 @@
     Private Sub frm_Empleado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'carga_combo(Me.CmbPuesto, Me.leo_tabla("Puestos"), "id_puesto", "puesto")
         'carga_combo(Me.Cmb_hotel, Me.leo_tabla("Hotel"), "id_hotel", "hotel")
-        carga_combo(Me.Cmb_tipo_doc, Me.leo_tabla("Tipo_Doc"), "id_tipo_doc", "tipo_doc")
+        carga_combo(Me.Cmb_tipo_doc, Me.leo_tabla("TIPOSDOCUMENTOS"), "nombre", "tipodocumento")
+        BtnGuardar.Enabled = False
+        BtnCancelar.Enabled = False
         For Each objeto As System.Windows.Forms.Control In Me.Controls
             If TypeOf objeto Is TextBox Then
-                objeto.Enabled = False
+                objeto.Text = ""
             End If
             If TypeOf objeto Is ComboBox Then
                 Dim actual As ComboBox = objeto
-                actual.Enabled = False
+                actual.SelectedIndex = -1
             End If
         Next
     End Sub
@@ -43,46 +45,67 @@
     'PARA BUSCARRR
 
     Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
+
         Dim conexion As New Data.OleDb.OleDbConnection
         Dim cmd As New Data.OleDb.OleDbCommand
         Dim consulta As String = ""
         Dim tabla As New Data.DataTable
-
-        conexion.ConnectionString = Me.string_conexion
-        conexion.Open()
-
-        consulta = "select * from empleado where id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
-        consulta &= "and nro_doc = " & Me.Txt_nro_doc.Text
-
-        cmd.CommandType = CommandType.Text
-        cmd.CommandText = consulta
-        cmd.Connection = conexion
-
-        tabla.Load(cmd.ExecuteReader())
-        conexion.Close()
-
-        If tabla.Rows.Count() = 0 Then
-            MessageBox.Show("El empleado no existe", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-
+        If Me.Txt_nro_doc.Text = "" Then
+            MessageBox.Show("Ingresar numero de documento", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Me.Txt_nro_doc.Focus()
         Else
-            MessageBox.Show("El empleado existe", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            Txt_nombre.Enabled = True
-            Txt_apellido.Enabled = True
-            Cmb_tipo_doc.Enabled = True
-            Txt_nro_doc.Enabled = True
-            DateTimePicker1.Enabled = True
-            Cmb_hotel.Enabled = True
-            CmbPuesto.Enabled = True
-            BtnGuardar.Enabled = True
+            If Me.Cmb_tipo_doc.SelectedIndex = -1 Then
+                MessageBox.Show("Seleccionar hotel", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Me.Cmb_tipo_doc.Focus()
+            Else
+                conexion.ConnectionString = Me.string_conexion
+                conexion.Open()
 
-            Txt_nombre.Text = tabla.Rows(0)("nombre")
-            Txt_apellido.Text = tabla.Rows(0)("apellido")
-            Txt_nro_doc.Text = tabla.Rows(0)("nro_doc")
-            Cmb_tipo_doc.SelectedValue = tabla.Rows(0)("id_tipo_doc")
-            Cmb_hotel.SelectedValue = tabla.Rows(0)("id_hotel")
-            CmbPuesto.SelectedValue = tabla.Rows(0)("id_puesto")
+                consulta = "select m.*,h.nombre_hotel,p.descripcion from EMPLEADOS m "
+                consulta &= "join TIPOSDOCUMENTOS t on m.tipo_doc=t.id_tipo_doc "
+                consulta &= "join HOTELES h on h.id_hotel=m.id_hotel "
+                consulta &= "join PUESTOS p on p.id_puesto=m.id_puesto "
+                consulta &= "where m.num_doc= '" & Me.Txt_nro_doc.Text & "'"
+                consulta &= " and  t.nombre = '" & Me.Cmb_tipo_doc.SelectedValue & "'"
 
+
+                cmd.CommandType = CommandType.Text
+                cmd.CommandText = consulta
+                cmd.Connection = conexion
+
+                tabla.Load(cmd.ExecuteReader())
+                conexion.Close()
+
+                If tabla.Rows.Count() = 0 Then
+                    MessageBox.Show("El empleado no existe", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+
+                Else
+                    Me.BtnBuscar.Enabled = False
+                    Txt_nombre.Enabled = True
+                    Txt_apellido.Enabled = True
+                    Cmb_hotel.Enabled = True
+                    cmb_tipo_doc_reg.Enabled = True
+                    DateTimePicker1.Enabled = True
+                    CmbPuesto.Enabled = True
+                    MessageBox.Show("El empleado existe", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+
+                    BtnGuardar.Enabled = True
+                    BtnCancelar.Enabled = True
+                    carga_combo(Me.cmb_tipo_doc_reg, Me.leo_tabla("TIPOSDOCUMENTOS"), "nombre", "tipodocumento")
+                    carga_combo(Me.CmbPuesto, Me.leo_tabla("PUESTOS"), "descripcion", "puesto")
+                    carga_combo(Me.Cmb_hotel, Me.leo_tabla("HOTELES"), "nombre_hotel", "hotel")
+                    Txt_nombre.Text = tabla.Rows(0)("nombre")
+                    Txt_nro_doc.Text = tabla.Rows(0)("num_doc")
+                    Txt_apellido.Text = tabla.Rows(0)("apellido")
+                    Cmb_tipo_doc.SelectedValue = tabla.Rows(0)("tipo_doc")
+                    Cmb_hotel.SelectedValue = tabla.Rows(0)("nombre_hotel")
+                    CmbPuesto.SelectedValue = tabla.Rows(0)("descripcion")
+
+
+                End If
+            End If
         End If
+
     End Sub
 
     ' PARA SALIRRRR 
@@ -113,7 +136,7 @@
             cmd.Connection = conexion
             cmd.CommandType = CommandType.Text
             cmd.CommandText = "delete from empleado where  where id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
-            ' "and nro_doc = " & Me.Txt_nro_doc.Text
+            ' "And nro_doc = " & Me.Txt_nro_doc.Text
 
             cmd.ExecuteNonQuery()
             conexion.Close()
@@ -193,7 +216,7 @@
         If validar() Then
             modificacion = "Update Empleado "
             modificacion &= "Set nombre = '" & Me.Txt_nombre.Text & "'"
-            modificacion &= ", apellido = '" & Me.Txt_apellido.Text & "'"
+                    modificacion &= ", apellido = '" & Me.Txt_apellido.Text & "'"
             modificacion &= ", id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
             modificacion &= ", nro_doc = '" & Me.Txt_nro_doc.Text & "'"
             modificacion &= ", fecha_ingreso = " & Me.DateTimePicker1.Text
@@ -209,4 +232,6 @@
             MessageBox.Show("Se ha modificado el empleado", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
     End Sub
+
+
 End Class
