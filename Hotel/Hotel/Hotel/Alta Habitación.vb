@@ -24,7 +24,6 @@
         Next
     End Sub
 
-
     Private Sub carga_combo(ByRef combo As ComboBox, ByVal datos As Data.DataTable, ByVal pk As String, ByVal descripcion As String)
         If (combo.Items.Count > 0) Then
             combo.SelectedIndex = -1
@@ -53,13 +52,9 @@
 
     End Function
 
-    ' PARA SALIRRRR 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         Me.Close()
     End Sub
-
-
-    'PARA BUSCARRR
 
     Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
 
@@ -120,9 +115,6 @@
 
     End Sub
 
-
-    'PARA CANCELARR Y BORRARR 
-
     Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click
         Dim consulta As String = ""
         If MessageBox.Show("Está seguro que desea borrar ese registro", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) = Windows.Forms.DialogResult.OK Then
@@ -137,16 +129,16 @@
                 cmd.Connection = conexion
 
                 consulta = "delete ha from HABITACIONES ha Join HOTELES ho on ha.id_hotel = ho.id_hotel"
-                consulta &= "where ha.id_habitacion= "
+                consulta &= " where ha.id_habitacion= " & Me.txtNroHab.Text
+                consulta &= " and ho.nombre_hotel= '" & Me.cmb_hotel_reg.SelectedValue & "'"
                 cmd.CommandType = CommandType.Text
                 cmd.CommandText = consulta
                 cmd.ExecuteNonQuery()
                 conexion.Close()
+                MessageBox.Show("Habitacion eliminada.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
         End If
     End Sub
-
-    'PARA MODIFICARRR
 
     Private Function validar() As Boolean
 
@@ -161,7 +153,7 @@
             Return False
         End If
         If Me.cmb_hotel_reg.SelectedIndex = -1 Then
-            MsgBox("El hotel no puede estar vacio", MsgBoxStyle.Critical, "Importante")
+            MsgBox("Seleccionar hotel", MsgBoxStyle.Critical, "Importante")
             Me.cmb_hotel_reg.Focus()
             Return False
         End If

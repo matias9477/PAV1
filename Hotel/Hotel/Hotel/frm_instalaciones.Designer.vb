@@ -28,19 +28,20 @@ Partial Class frm_instalaciones
         Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.BtnNuevo = New System.Windows.Forms.Button()
         Me.BtnBuscar = New System.Windows.Forms.Button()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.cmb_hotel_reg = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.cmb_instalacion = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmb_hotel = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.chk_disponible = New System.Windows.Forms.CheckBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txt_instalacion = New System.Windows.Forms.TextBox()
+        Me.cmb_hotel_reg = New System.Windows.Forms.ComboBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.chk_disponible_reg = New System.Windows.Forms.CheckBox()
+        Me.txt_descripcion = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BtnSalir
@@ -90,37 +91,6 @@ Partial Class frm_instalaciones
         Me.BtnBuscar.TabIndex = 12
         Me.BtnBuscar.UseVisualStyleBackColor = True
         '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
-        Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.cmb_hotel_reg)
-        Me.GroupBox1.Controls.Add(Me.Label6)
-        Me.GroupBox1.Location = New System.Drawing.Point(35, 211)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(477, 98)
-        Me.GroupBox1.TabIndex = 19
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Nueva Instalacion"
-        '
-        'cmb_hotel_reg
-        '
-        Me.cmb_hotel_reg.Enabled = False
-        Me.cmb_hotel_reg.FormattingEnabled = True
-        Me.cmb_hotel_reg.Location = New System.Drawing.Point(76, 13)
-        Me.cmb_hotel_reg.Name = "cmb_hotel_reg"
-        Me.cmb_hotel_reg.Size = New System.Drawing.Size(121, 21)
-        Me.cmb_hotel_reg.TabIndex = 0
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(35, 21)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(35, 13)
-        Me.Label6.TabIndex = 4
-        Me.Label6.Text = "Hotel "
-        '
         'cmb_instalacion
         '
         Me.cmb_instalacion.FormattingEnabled = True
@@ -132,11 +102,11 @@ Partial Class frm_instalaciones
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(47, 42)
+        Me.Label4.Location = New System.Drawing.Point(17, 48)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(58, 13)
         Me.Label4.TabIndex = 18
-        Me.Label4.Text = "Instalacion"
+        Me.Label4.Text = "Instalación"
         '
         'cmb_hotel
         '
@@ -149,69 +119,117 @@ Partial Class frm_instalaciones
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(73, 15)
+        Me.Label1.Location = New System.Drawing.Point(43, 22)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(32, 13)
         Me.Label1.TabIndex = 21
         Me.Label1.Text = "Hotel"
         '
-        'Label2
+        'txt_instalacion
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 46)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(58, 13)
-        Me.Label2.TabIndex = 20
-        Me.Label2.Text = "Instalacion"
+        Me.txt_instalacion.Location = New System.Drawing.Point(90, 45)
+        Me.txt_instalacion.Name = "txt_instalacion"
+        Me.txt_instalacion.Size = New System.Drawing.Size(121, 20)
+        Me.txt_instalacion.TabIndex = 24
         '
-        'DataGridView1
+        'cmb_hotel_reg
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(35, 89)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(477, 116)
-        Me.DataGridView1.TabIndex = 21
+        Me.cmb_hotel_reg.FormattingEnabled = True
+        Me.cmb_hotel_reg.Location = New System.Drawing.Point(90, 19)
+        Me.cmb_hotel_reg.Name = "cmb_hotel_reg"
+        Me.cmb_hotel_reg.Size = New System.Drawing.Size(121, 21)
+        Me.cmb_hotel_reg.TabIndex = 25
         '
-        'chk_disponible
+        'GroupBox1
         '
-        Me.chk_disponible.AutoSize = True
-        Me.chk_disponible.Enabled = False
-        Me.chk_disponible.Location = New System.Drawing.Point(111, 66)
-        Me.chk_disponible.Name = "chk_disponible"
-        Me.chk_disponible.Size = New System.Drawing.Size(78, 17)
-        Me.chk_disponible.TabIndex = 22
-        Me.chk_disponible.Text = "Disponible "
-        Me.chk_disponible.UseVisualStyleBackColor = True
+        Me.GroupBox1.Controls.Add(Me.Label7)
+        Me.GroupBox1.Controls.Add(Me.chk_disponible_reg)
+        Me.GroupBox1.Controls.Add(Me.txt_descripcion)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.txt_instalacion)
+        Me.GroupBox1.Controls.Add(Me.cmb_hotel_reg)
+        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Location = New System.Drawing.Point(35, 182)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(477, 129)
+        Me.GroupBox1.TabIndex = 27
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Instalación"
         '
-        'TextBox1
+        'Label7
         '
-        Me.TextBox1.Location = New System.Drawing.Point(76, 46)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(121, 20)
-        Me.TextBox1.TabIndex = 21
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(27, 99)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(43, 13)
+        Me.Label7.TabIndex = 31
+        Me.Label7.Text = "Estado:"
+        '
+        'chk_disponible_reg
+        '
+        Me.chk_disponible_reg.AutoSize = True
+        Me.chk_disponible_reg.Enabled = False
+        Me.chk_disponible_reg.Location = New System.Drawing.Point(90, 98)
+        Me.chk_disponible_reg.Name = "chk_disponible_reg"
+        Me.chk_disponible_reg.Size = New System.Drawing.Size(78, 17)
+        Me.chk_disponible_reg.TabIndex = 30
+        Me.chk_disponible_reg.Text = "Disponible "
+        Me.chk_disponible_reg.UseVisualStyleBackColor = True
+        '
+        'txt_descripcion
+        '
+        Me.txt_descripcion.Location = New System.Drawing.Point(90, 72)
+        Me.txt_descripcion.Name = "txt_descripcion"
+        Me.txt_descripcion.Size = New System.Drawing.Size(381, 20)
+        Me.txt_descripcion.TabIndex = 28
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 74)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(63, 13)
+        Me.Label3.TabIndex = 27
+        Me.Label3.Text = "Descripcion"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(73, 16)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(32, 13)
+        Me.Label5.TabIndex = 29
+        Me.Label5.Text = "Hotel"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(47, 42)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(58, 13)
+        Me.Label6.TabIndex = 29
+        Me.Label6.Text = "Instalación"
         '
         'frm_instalaciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(545, 365)
-        Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(Me.chk_disponible)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.cmb_hotel)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.BtnSalir)
         Me.Controls.Add(Me.BtnCancelar)
         Me.Controls.Add(Me.BtnGuardar)
         Me.Controls.Add(Me.BtnNuevo)
         Me.Controls.Add(Me.BtnBuscar)
-        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.cmb_instalacion)
-        Me.Controls.Add(Me.Label4)
         Me.Name = "frm_instalaciones"
         Me.Text = "Instalaciones"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -222,15 +240,17 @@ Partial Class frm_instalaciones
     Friend WithEvents BtnGuardar As Button
     Friend WithEvents BtnNuevo As Button
     Friend WithEvents BtnBuscar As Button
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents cmb_hotel_reg As ComboBox
-    Friend WithEvents Label6 As Label
     Friend WithEvents cmb_instalacion As ComboBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Label2 As Label
     Friend WithEvents cmb_hotel As ComboBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents chk_disponible As CheckBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txt_instalacion As TextBox
+    Friend WithEvents cmb_hotel_reg As ComboBox
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents txt_descripcion As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents chk_disponible_reg As CheckBox
 End Class
