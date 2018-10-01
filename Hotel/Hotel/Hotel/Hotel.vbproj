@@ -139,6 +139,9 @@
     <EmbeddedResource Include="frm_instalaciones.resx">
       <DependentUpon>frm_instalaciones.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_servicios.resx">
+      <DependentUpon>frm_servicios.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.vb</DependentUpon>
     </EmbeddedResource>

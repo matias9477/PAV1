@@ -35,12 +35,12 @@ Partial Class frm_instalaciones
         Me.txt_instalacion = New System.Windows.Forms.TextBox()
         Me.cmb_hotel_reg = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.chk_disponible_reg = New System.Windows.Forms.CheckBox()
         Me.txt_descripcion = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.chk_disponible_reg = New System.Windows.Forms.CheckBox()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -157,26 +157,6 @@ Partial Class frm_instalaciones
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Instalación"
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(27, 99)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(43, 13)
-        Me.Label7.TabIndex = 31
-        Me.Label7.Text = "Estado:"
-        '
-        'chk_disponible_reg
-        '
-        Me.chk_disponible_reg.AutoSize = True
-        Me.chk_disponible_reg.Enabled = False
-        Me.chk_disponible_reg.Location = New System.Drawing.Point(90, 98)
-        Me.chk_disponible_reg.Name = "chk_disponible_reg"
-        Me.chk_disponible_reg.Size = New System.Drawing.Size(78, 17)
-        Me.chk_disponible_reg.TabIndex = 30
-        Me.chk_disponible_reg.Text = "Disponible "
-        Me.chk_disponible_reg.UseVisualStyleBackColor = True
-        '
         'txt_descripcion
         '
         Me.txt_descripcion.Location = New System.Drawing.Point(90, 72)
@@ -210,6 +190,26 @@ Partial Class frm_instalaciones
         Me.Label6.Size = New System.Drawing.Size(58, 13)
         Me.Label6.TabIndex = 29
         Me.Label6.Text = "Instalación"
+        '
+        'chk_disponible_reg
+        '
+        Me.chk_disponible_reg.AutoSize = True
+        Me.chk_disponible_reg.Enabled = False
+        Me.chk_disponible_reg.Location = New System.Drawing.Point(90, 98)
+        Me.chk_disponible_reg.Name = "chk_disponible_reg"
+        Me.chk_disponible_reg.Size = New System.Drawing.Size(78, 17)
+        Me.chk_disponible_reg.TabIndex = 30
+        Me.chk_disponible_reg.Text = "Disponible "
+        Me.chk_disponible_reg.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(27, 99)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(43, 13)
+        Me.Label7.TabIndex = 31
+        Me.Label7.Text = "Estado:"
         '
         'frm_instalaciones
         '

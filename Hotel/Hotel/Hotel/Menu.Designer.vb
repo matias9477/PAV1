@@ -69,7 +69,7 @@ Partial Class frm_menu
         Me.btn_hotel.Name = "btn_hotel"
         Me.btn_hotel.Size = New System.Drawing.Size(120, 135)
         Me.btn_hotel.TabIndex = 4
-        Me.btn_hotel.Text = "Hotel"
+        Me.btn_hotel.Text = "Empleados"
         Me.btn_hotel.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         Me.btn_hotel.UseVisualStyleBackColor = True
         '

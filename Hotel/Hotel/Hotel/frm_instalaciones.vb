@@ -276,7 +276,9 @@
 
                 consulta = "delete imx from INSTALACIONXHOTEL imx "
                 consulta &= " join INSTALACIONES i on i.id_instalacion=imx.id_instalacion"
+                consulta &= " join HOTELES ho on ho.id_hotel=imx.id_hotel"
                 consulta &= " where i.nombre='" & Me.txt_instalacion.Text & "'"
+                consulta &= " and ho.nombre_hotel= '" & Me.cmb_hotel_reg.SelectedValue & "'"
                 consulta &= " delete r from INSTALACIONES r"
                 consulta &= " where nombre='" & Me.txt_instalacion.Text & "'"
                 cmd.CommandType = CommandType.Text
