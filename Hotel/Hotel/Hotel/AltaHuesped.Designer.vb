@@ -30,31 +30,29 @@ Partial Class frm_Huesped
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Txt_nro_doc = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.CmbCiudad = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TxtNroTarjeta = New System.Windows.Forms.TextBox()
         Me.BtnNuevo = New System.Windows.Forms.Button()
         Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.BtnCancelar = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.CmbTipoTarjeta = New System.Windows.Forms.ComboBox()
         Me.BtnBuscar = New System.Windows.Forms.Button()
         Me.btnSalir = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.cmbTipoDoc = New System.Windows.Forms.ComboBox()
+        Me.cmb_tipo_doc_reg = New System.Windows.Forms.ComboBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.txt_nro_docum = New System.Windows.Forms.TextBox()
+        Me.txt_nro_doc_reg = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Cmb_tipo_doc = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.txt_ciudad = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 23)
+        Me.Label1.Location = New System.Drawing.Point(53, 30)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(44, 13)
         Me.Label1.TabIndex = 0
@@ -63,16 +61,16 @@ Partial Class frm_Huesped
         'TxtApellido
         '
         Me.TxtApellido.Enabled = False
-        Me.TxtApellido.Location = New System.Drawing.Point(61, 20)
+        Me.TxtApellido.Location = New System.Drawing.Point(103, 27)
         Me.TxtApellido.MaxLength = 20
         Me.TxtApellido.Name = "TxtApellido"
         Me.TxtApellido.Size = New System.Drawing.Size(156, 20)
-        Me.TxtApellido.TabIndex = 1
+        Me.TxtApellido.TabIndex = 0
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(261, 23)
+        Me.Label2.Location = New System.Drawing.Point(269, 30)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(44, 13)
         Me.Label2.TabIndex = 2
@@ -81,11 +79,11 @@ Partial Class frm_Huesped
         'TxtNombre
         '
         Me.TxtNombre.Enabled = False
-        Me.TxtNombre.Location = New System.Drawing.Point(311, 19)
+        Me.TxtNombre.Location = New System.Drawing.Point(319, 27)
         Me.TxtNombre.MaxLength = 20
         Me.TxtNombre.Name = "TxtNombre"
         Me.TxtNombre.Size = New System.Drawing.Size(160, 20)
-        Me.TxtNombre.TabIndex = 3
+        Me.TxtNombre.TabIndex = 4
         '
         'Label3
         '
@@ -102,31 +100,22 @@ Partial Class frm_Huesped
         Me.Txt_nro_doc.MaxLength = 10
         Me.Txt_nro_doc.Name = "Txt_nro_doc"
         Me.Txt_nro_doc.Size = New System.Drawing.Size(121, 20)
-        Me.Txt_nro_doc.TabIndex = 5
+        Me.Txt_nro_doc.TabIndex = 1
         Me.Txt_nro_doc.Text = " "
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 87)
+        Me.Label4.Location = New System.Drawing.Point(49, 98)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(40, 13)
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Ciudad"
         '
-        'CmbCiudad
-        '
-        Me.CmbCiudad.Enabled = False
-        Me.CmbCiudad.FormattingEnabled = True
-        Me.CmbCiudad.Location = New System.Drawing.Point(61, 84)
-        Me.CmbCiudad.Name = "CmbCiudad"
-        Me.CmbCiudad.Size = New System.Drawing.Size(156, 21)
-        Me.CmbCiudad.TabIndex = 7
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(261, 119)
+        Me.Label5.Location = New System.Drawing.Point(6, 125)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(91, 13)
         Me.Label5.TabIndex = 8
@@ -135,11 +124,11 @@ Partial Class frm_Huesped
         'TxtNroTarjeta
         '
         Me.TxtNroTarjeta.Enabled = False
-        Me.TxtNroTarjeta.Location = New System.Drawing.Point(358, 116)
+        Me.TxtNroTarjeta.Location = New System.Drawing.Point(103, 122)
         Me.TxtNroTarjeta.MaxLength = 20
         Me.TxtNroTarjeta.Name = "TxtNroTarjeta"
         Me.TxtNroTarjeta.Size = New System.Drawing.Size(134, 20)
-        Me.TxtNroTarjeta.TabIndex = 9
+        Me.TxtNroTarjeta.TabIndex = 3
         '
         'BtnNuevo
         '
@@ -148,7 +137,7 @@ Partial Class frm_Huesped
         Me.BtnNuevo.Location = New System.Drawing.Point(21, 238)
         Me.BtnNuevo.Name = "BtnNuevo"
         Me.BtnNuevo.Size = New System.Drawing.Size(41, 36)
-        Me.BtnNuevo.TabIndex = 10
+        Me.BtnNuevo.TabIndex = 3
         Me.BtnNuevo.UseVisualStyleBackColor = True
         '
         'BtnGuardar
@@ -158,7 +147,7 @@ Partial Class frm_Huesped
         Me.BtnGuardar.Location = New System.Drawing.Point(86, 236)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(37, 38)
-        Me.BtnGuardar.TabIndex = 11
+        Me.BtnGuardar.TabIndex = 4
         Me.BtnGuardar.UseVisualStyleBackColor = True
         '
         'BtnCancelar
@@ -168,26 +157,8 @@ Partial Class frm_Huesped
         Me.BtnCancelar.Location = New System.Drawing.Point(149, 236)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(35, 38)
-        Me.BtnCancelar.TabIndex = 12
+        Me.BtnCancelar.TabIndex = 5
         Me.BtnCancelar.UseVisualStyleBackColor = True
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(6, 118)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(40, 13)
-        Me.Label6.TabIndex = 13
-        Me.Label6.Text = "Tarjeta"
-        '
-        'CmbTipoTarjeta
-        '
-        Me.CmbTipoTarjeta.Enabled = False
-        Me.CmbTipoTarjeta.FormattingEnabled = True
-        Me.CmbTipoTarjeta.Location = New System.Drawing.Point(61, 115)
-        Me.CmbTipoTarjeta.Name = "CmbTipoTarjeta"
-        Me.CmbTipoTarjeta.Size = New System.Drawing.Size(156, 21)
-        Me.CmbTipoTarjeta.TabIndex = 14
         '
         'BtnBuscar
         '
@@ -195,7 +166,7 @@ Partial Class frm_Huesped
         Me.BtnBuscar.Location = New System.Drawing.Point(514, 6)
         Me.BtnBuscar.Name = "BtnBuscar"
         Me.BtnBuscar.Size = New System.Drawing.Size(42, 44)
-        Me.BtnBuscar.TabIndex = 15
+        Me.BtnBuscar.TabIndex = 2
         Me.BtnBuscar.UseVisualStyleBackColor = True
         '
         'btnSalir
@@ -204,25 +175,23 @@ Partial Class frm_Huesped
         Me.btnSalir.Location = New System.Drawing.Point(514, 231)
         Me.btnSalir.Name = "btnSalir"
         Me.btnSalir.Size = New System.Drawing.Size(39, 43)
-        Me.btnSalir.TabIndex = 16
+        Me.btnSalir.TabIndex = 6
         Me.btnSalir.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.cmbTipoDoc)
+        Me.GroupBox1.Controls.Add(Me.txt_ciudad)
+        Me.GroupBox1.Controls.Add(Me.cmb_tipo_doc_reg)
         Me.GroupBox1.Controls.Add(Me.Label10)
-        Me.GroupBox1.Controls.Add(Me.txt_nro_docum)
+        Me.GroupBox1.Controls.Add(Me.txt_nro_doc_reg)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.CmbTipoTarjeta)
         Me.GroupBox1.Controls.Add(Me.TxtApellido)
-        Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.TxtNroTarjeta)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.TxtNombre)
         Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.CmbCiudad)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 60)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(498, 157)
@@ -230,37 +199,37 @@ Partial Class frm_Huesped
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Huesped "
         '
-        'cmbTipoDoc
+        'cmb_tipo_doc_reg
         '
-        Me.cmbTipoDoc.Enabled = False
-        Me.cmbTipoDoc.FormattingEnabled = True
-        Me.cmbTipoDoc.Location = New System.Drawing.Point(98, 53)
-        Me.cmbTipoDoc.Name = "cmbTipoDoc"
-        Me.cmbTipoDoc.Size = New System.Drawing.Size(121, 21)
-        Me.cmbTipoDoc.TabIndex = 20
+        Me.cmb_tipo_doc_reg.Enabled = False
+        Me.cmb_tipo_doc_reg.FormattingEnabled = True
+        Me.cmb_tipo_doc_reg.Location = New System.Drawing.Point(103, 59)
+        Me.cmb_tipo_doc_reg.Name = "cmb_tipo_doc_reg"
+        Me.cmb_tipo_doc_reg.Size = New System.Drawing.Size(121, 21)
+        Me.cmb_tipo_doc_reg.TabIndex = 1
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(6, 56)
+        Me.Label10.Location = New System.Drawing.Point(11, 62)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(86, 13)
         Me.Label10.TabIndex = 19
         Me.Label10.Text = "Tipo Documento"
         '
-        'txt_nro_docum
+        'txt_nro_doc_reg
         '
-        Me.txt_nro_docum.Enabled = False
-        Me.txt_nro_docum.Location = New System.Drawing.Point(347, 56)
-        Me.txt_nro_docum.MaxLength = 10
-        Me.txt_nro_docum.Name = "txt_nro_docum"
-        Me.txt_nro_docum.Size = New System.Drawing.Size(124, 20)
-        Me.txt_nro_docum.TabIndex = 18
+        Me.txt_nro_doc_reg.Enabled = False
+        Me.txt_nro_doc_reg.Location = New System.Drawing.Point(347, 60)
+        Me.txt_nro_doc_reg.MaxLength = 10
+        Me.txt_nro_doc_reg.Name = "txt_nro_doc_reg"
+        Me.txt_nro_doc_reg.Size = New System.Drawing.Size(124, 20)
+        Me.txt_nro_doc_reg.TabIndex = 5
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(261, 59)
+        Me.Label7.Location = New System.Drawing.Point(261, 63)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(80, 13)
         Me.Label7.TabIndex = 18
@@ -281,7 +250,7 @@ Partial Class frm_Huesped
         Me.Cmb_tipo_doc.Location = New System.Drawing.Point(108, 18)
         Me.Cmb_tipo_doc.Name = "Cmb_tipo_doc"
         Me.Cmb_tipo_doc.Size = New System.Drawing.Size(121, 21)
-        Me.Cmb_tipo_doc.TabIndex = 19
+        Me.Cmb_tipo_doc.TabIndex = 0
         '
         'Label9
         '
@@ -291,6 +260,15 @@ Partial Class frm_Huesped
         Me.Label9.Size = New System.Drawing.Size(77, 13)
         Me.Label9.TabIndex = 20
         Me.Label9.Text = "N° Documento"
+        '
+        'txt_ciudad
+        '
+        Me.txt_ciudad.Enabled = False
+        Me.txt_ciudad.Location = New System.Drawing.Point(103, 95)
+        Me.txt_ciudad.MaxLength = 20
+        Me.txt_ciudad.Name = "txt_ciudad"
+        Me.txt_ciudad.Size = New System.Drawing.Size(134, 20)
+        Me.txt_ciudad.TabIndex = 2
         '
         'frm_Huesped
         '
@@ -324,22 +302,20 @@ Partial Class frm_Huesped
     Friend WithEvents Label3 As Label
     Friend WithEvents Txt_nro_doc As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents CmbCiudad As ComboBox
     Friend WithEvents Label5 As Label
     Friend WithEvents TxtNroTarjeta As TextBox
     Friend WithEvents BtnNuevo As Button
     Friend WithEvents BtnGuardar As Button
     Friend WithEvents BtnCancelar As Button
-    Friend WithEvents Label6 As Label
-    Friend WithEvents CmbTipoTarjeta As ComboBox
     Friend WithEvents BtnBuscar As Button
     Friend WithEvents btnSalir As Button
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents txt_nro_docum As TextBox
+    Friend WithEvents txt_nro_doc_reg As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Cmb_tipo_doc As ComboBox
     Friend WithEvents Label9 As Label
-    Friend WithEvents cmbTipoDoc As ComboBox
+    Friend WithEvents cmb_tipo_doc_reg As ComboBox
     Friend WithEvents Label10 As Label
+    Friend WithEvents txt_ciudad As TextBox
 End Class

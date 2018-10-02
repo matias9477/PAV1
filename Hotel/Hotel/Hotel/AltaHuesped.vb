@@ -1,22 +1,39 @@
 ﻿Public Class frm_Huesped
+    Dim string_conexion As String = "Provider=SQLOLEDB.1;Password=mercedeslucila;Persist Security Info=True;User ID=sa;Initial Catalog=HOTEL;Data Source=localhost\SQLEXPRESS"
+    Enum estado
+        insertar
+        modificar
+    End Enum
+    Enum termino
+        aprobado
+        rechazado
+    End Enum
+    Dim accion As estado = estado.modificar
     Private Sub frm_Huesped_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.accion = estado.modificar
+        Me.BtnNuevo.Enabled = True
+        Me.BtnCancelar.Enabled = False
+        Me.BtnGuardar.Enabled = False
+        Me.txt_nro_doc_reg.Enabled = False
+        Me.TxtNroTarjeta.Enabled = False
+        Me.TxtApellido.Enabled = False
+        Me.TxtNombre.Enabled = False
+        Me.cmb_tipo_doc_reg.Enabled = False
+        Me.txt_ciudad.Enabled = False
 
+        carga_combo(Me.Cmb_tipo_doc, leo_tabla("TIPOSDOCUMENTOS"), "nombre_tipo", "nombres")
     End Sub
 
-    ''AGREGAR LA CADENA DE CONEXION!!!!!
-    Dim string_conexion As String = "Provider=SQLOLEDB.1;Password=mercedeslucila;Persist Security Info=True;User ID=sa;Initial Catalog=HOTEL;Data Source=localhost\SQLEXPRESS"
-
-
-    'Private Sub AltaHuesped_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    '    carga_combo(Me.Cmb_tipo_doc, Me.leo_tabla("Tipo_Doc"), "id_tipo_doc", "tipo_doc")
-    'End Sub
-
-
     Private Sub carga_combo(ByRef combo As ComboBox, ByVal datos As Data.DataTable, ByVal pk As String, ByVal descripcion As String)
-        combo.Items.Clear()
-        combo.DataSource = datos
-        combo.ValueMember = pk
-        combo.DisplayMember = descripcion
+        If (combo.Items.Count > 0) Then
+            combo.SelectedIndex = -1
+        Else
+            combo.Items.Clear()
+            combo.DataSource = datos
+            combo.ValueMember = pk
+            combo.DisplayMember = descripcion
+        End If
+
     End Sub
 
     Private Function leo_tabla(ByVal nombre_tabla As String) As Data.DataTable
@@ -35,179 +52,247 @@
 
     End Function
 
-    ''PARA BUSCARRR
+    Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
+        Dim conexion As New Data.OleDb.OleDbConnection
+        Dim cmd As New Data.OleDb.OleDbCommand
+        Dim consulta As String = ""
+        Dim tabla As New Data.DataTable
+        If Me.Txt_nro_doc.Text = "" Then
+            MessageBox.Show("Ingresar numero de documento", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Me.Txt_nro_doc.Focus()
+        Else
+            If Me.Cmb_tipo_doc.SelectedIndex = -1 Then
+                MessageBox.Show("Seleccionar tipo documento", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Me.Cmb_tipo_doc.Focus()
+            Else
+                conexion.ConnectionString = Me.string_conexion
+                conexion.Open()
+                consulta = "select m.*,t.nombre_tipo from HUESPEDES m "
+                consulta &= "join TIPOSDOCUMENTOS t on m.tipo_doc=t.id_tipo_doc "
+                consulta &= "where m.num_doc= " & Me.Txt_nro_doc.Text
+                consulta &= " and  t.nombre_tipo = '" & Me.Cmb_tipo_doc.SelectedValue & "'"
 
-    'Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
-    '    Dim conexion As New Data.OleDb.OleDbConnection
-    '    Dim cmd As New Data.OleDb.OleDbCommand
-    '    Dim consulta As String = ""
-    '    Dim tabla As New Data.DataTable
+                cmd.CommandType = CommandType.Text
+                cmd.CommandText = consulta
+                cmd.Connection = conexion
 
-    '    conexion.ConnectionString = Me.string_conexion
-    '    conexion.Open()
+                tabla.Load(cmd.ExecuteReader())
+                conexion.Close()
 
-    '    consulta = "select * from huesped where id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
-    '    consulta &= "and nro_doc = " & Me.Txt_nro_doc.Text
+                If tabla.Rows.Count() = 0 Then
+                    MessageBox.Show("El huesped no existe", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
 
-    '    cmd.CommandType = CommandType.Text
-    '    cmd.CommandText = consulta
-    '    cmd.Connection = conexion
+                Else
+                    MessageBox.Show("El empleado existe", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Me.BtnCancelar.Enabled = True
+                    Me.BtnGuardar.Enabled = True
+                    Me.txt_nro_doc_reg.Enabled = True
+                    Me.TxtNroTarjeta.Enabled = True
+                    Me.TxtApellido.Enabled = True
+                    Me.TxtNombre.Enabled = True
+                    Me.cmb_tipo_doc_reg.Enabled = True
+                    Me.txt_ciudad.Enabled = True
+                    BtnNuevo.Enabled = True
+                    carga_combo(Me.cmb_tipo_doc_reg, leo_tabla("TIPOSDOCUMENTOS"), "nombre_tipo", "nombres")
+                    TxtNombre.Text = tabla.Rows(0)("nombre")
+                    TxtApellido.Text = tabla.Rows(0)("apellido")
+                    cmb_tipo_doc_reg.SelectedValue = tabla.Rows(0)("nombre_tipo")
+                    txt_nro_doc_reg.Text = tabla.Rows(0)("num_doc")
+                    txt_ciudad.Text = tabla.Rows(0)("ciudad")
+                    TxtNroTarjeta.Text = tabla.Rows(0)("numero_tarjeta")
 
-    '    tabla.Load(cmd.ExecuteReader())
-    '    conexion.Close()
+                End If
+            End If
+        End If
 
-    '    If tabla.Rows.Count() = 0 Then
-    '        MessageBox.Show("El huesped no existe", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+    End Sub
 
-    '    Else
-    '        MessageBox.Show("El empleado existe", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-    '        TxtNombre.Enabled = True
-    '        TxtApellido.Enabled = True
-    '        cmbTipoDoc.Enabled = True
-    '        txt_nro_docum.Enabled = True
-    '        CmbCiudad.Enabled = True
-    '        CmbTipoTarjeta.Enabled = True
-    '        TxtNroTarjeta.Enabled = True
-    '        BtnGuardar.Enabled = True
-    '        BtnCancelar.Enabled = True
-    '        BtnNuevo.Enabled = True
-
-    '        TxtNombre.Text = tabla.Rows(0)("nombre")
-    '        TxtApellido.Text = tabla.Rows(0)("apellido")
-    '        cmbTipoDoc.SelectedValue = tabla.Rows(0)("is_tipo_doc")
-    '        CmbTipoTarjeta.SelectedValue = tabla.Rows(0)("id_tipo_tarjeta")
-    '        CmbCiudad.SelectedValue = tabla.Rows(0)("id_ciudad")
-    '        TxtNroTarjeta.Text = tabla.Rows(0)("numero_tarjeta")
-
-    '    End If
-    'End Sub
-
-
-    ''' PARA SALIRRRR 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
         Me.Close()
     End Sub
 
-    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        If MessageBox.Show("¿Está seguro que quiere salir del formulario?", "Importante",
-            MessageBoxButtons.OKCancel, MessageBoxIcon.Question) =
-            Windows.Forms.DialogResult.OK Then
-            e.Cancel = False
-        Else
-            e.Cancel = True
+    Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click
+
+        If MessageBox.Show("Está seguro que desea borrar ese registro", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) = Windows.Forms.DialogResult.OK Then
+
+            Dim conexion As New Data.OleDb.OleDbConnection
+            Dim cmd As New Data.OleDb.OleDbCommand
+            Dim consulta As String = ""
+            conexion.ConnectionString = Me.string_conexion
+            conexion.Open()
+            consulta = "delete imx from HUESPEDES imx"
+            consulta &= " join TIPOSDOCUMENTOS t on t.id_tipo_doc=imx.tipo_doc"
+            consulta &= " where imx.num_doc=" & Me.Txt_nro_doc.Text
+            consulta &= " and t.nombre_tipo='" & Me.Cmb_tipo_doc.SelectedValue & "'"
+            cmd.Connection = conexion
+            cmd.CommandType = CommandType.Text
+            cmd.CommandText = consulta
+            ' "and nro_doc = " & Me.Txt_nro_doc.Text
+
+            cmd.ExecuteNonQuery()
+            conexion.Close()
+
         End If
     End Sub
 
-    ''PARA CANCELARR Y BORRARR 
-    'Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click
+    Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
 
-    '    If MessageBox.Show("Está seguro que desea borrar ese registro", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) = Windows.Forms.DialogResult.OK Then
+        For Each objeto As System.Windows.Forms.Control In Me.Controls
+            If TypeOf objeto Is TextBox Then
+                objeto.Text = ""
+            End If
+            If TypeOf objeto Is ComboBox Then
+                Dim actual As ComboBox = objeto
+                actual.SelectedIndex = -1
+            End If
+        Next
+        Me.accion = estado.insertar
+        Me.BtnNuevo.Enabled = True
+        Me.BtnCancelar.Enabled = True
+        Me.BtnGuardar.Enabled = True
+        Me.txt_nro_doc_reg.Enabled = True
+        Me.txt_nro_doc_reg.Text = ""
+        Me.TxtNroTarjeta.Enabled = True
+        Me.TxtNroTarjeta.Text = ""
+        Me.TxtApellido.Enabled = True
+        Me.TxtApellido.Text = ""
+        Me.TxtNombre.Enabled = True
+        Me.TxtNombre.Text = ""
+        Me.cmb_tipo_doc_reg.Enabled = True
+        Me.cmb_tipo_doc_reg.SelectedIndex = -1
+        Me.txt_ciudad.Enabled = True
+        Me.txt_ciudad.Text = ""
+    End Sub
 
-    '        Dim conexion As New Data.OleDb.OleDbConnection
-    '        Dim cmd As New Data.OleDb.OleDbCommand
-    '        conexion.ConnectionString = Me.string_conexion
-    '        conexion.Open()
-    '        cmd.Connection = conexion
-    '        cmd.CommandType = CommandType.Text
-    '        cmd.CommandText = "delete from huesped where  where id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
-    '        ' "and nro_doc = " & Me.Txt_nro_doc.Text
+    Private Function validar() As Boolean
 
-    '        cmd.ExecuteNonQuery()
-    '        conexion.Close()
+        If Me.TxtNombre.Text = "" Then
+            MsgBox("El nombre no puede estar vacio", MsgBoxStyle.Critical, "Importante")
+            Me.TxtNombre.Focus()
+            Return False
+        End If
+        If Me.TxtApellido.Text = "" Then
+            MsgBox("El apellido no puede estar vacio", MsgBoxStyle.Critical, "Importante")
+            Me.TxtApellido.Focus()
+            Return False
+        End If
+        If Me.cmb_tipo_doc_reg.SelectedIndex = -1 Then
+            MsgBox("El tipo de documento no puede estar vacio", MsgBoxStyle.Critical, "Importante")
+            Me.Cmb_tipo_doc.Focus()
+            Return False
+        End If
+        If txt_nro_doc_reg.Text = "" Then
+            MsgBox("El numero de documento no puede estar vacio", MsgBoxStyle.Critical, "Importante")
+            Me.Txt_nro_doc.Focus()
+            Return False
+        End If
 
-    '    End If
-    'End Sub
+        If Me.txt_ciudad.Text = "" Then
+            MsgBox("La ciudad no puede estar vacia", MsgBoxStyle.Critical, "Importante")
+            Me.txt_ciudad.Focus()
+            Return False
+        End If
 
-    ''COMO SE HACEEEEEEEE
-    ''Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
+        If Me.TxtNroTarjeta.Text = "" Then
+            MsgBox("El numero de tarjeta no puede estar vacio", MsgBoxStyle.Critical, "Importante")
+            Me.TxtNroTarjeta.Focus()
+            Return False
+        End If
 
-    ''For Each objeto As System.Windows.Forms.Control In Me.Controls
-    ''If TypeOf objeto Is TextBox Then
-    ''           objeto.Text = ""
-    ''End If
-    ''If TypeOf objeto Is ComboBox Then
-    ''Dim actual As ComboBox = objeto
-    ''           actual.SelectedIndex = -1
-    ''End If
-    ''Next
-    ''
-    ''Me.txt_documento.Enabled = True
-    ''Me 'Txt_apellido.Focus()
-    ''Me.accion = estado.insertar
+        Return True
 
-    ''End Sub
+    End Function
 
-    ''PARA MODIFICARRR
+    Private Function validar_existencia() As Boolean
+        Dim conexion As New Data.OleDb.OleDbConnection
+        Dim cmd As New Data.OleDb.OleDbCommand
+        Dim consulta As String = ""
+        Dim tabla As New Data.DataTable
+        conexion.ConnectionString = Me.string_conexion
+        conexion.Open()
+        consulta = "Select * from HUESPEDES m "
+        consulta &= " join TIPOSDOCUMENTOS t on t.id_tipo_doc=m.tipo_doc"
+        consulta &= " where t.nombre_tipo = '" & cmb_tipo_doc_reg.SelectedValue & "'"
+        consulta &= " and num_doc = '" & Me.txt_nro_doc_reg.Text & "'"
+        cmd.CommandType = CommandType.Text
+        cmd.CommandText = consulta
+        cmd.Connection = conexion
 
-    'Private Function validar() As Boolean
+        tabla.Load(cmd.ExecuteReader())
+        conexion.Close()
 
-    '    If Me.TxtNombre.Text = "" Then
-    '        MsgBox("El nombre no puede estar vacio", MsgBoxStyle.Critical, "Importante")
-    '        Me.TxtNombre.Focus()
-    '        Return False
-    '    End If
-    '    If Me.TxtApellido.Text = "" Then
-    '        MsgBox("El apellido no puede estar vacio", MsgBoxStyle.Critical, "Importante")
-    '        Me.TxtApellido.Focus()
-    '        Return False
-    '    End If
-    '    If Me.Cmb_tipo_doc.SelectedIndex = -1 Then
-    '        MsgBox("El tipo de documento no puede estar vacio", MsgBoxStyle.Critical, "Importante")
-    '        Me.Cmb_tipo_doc.Focus()
-    '        Return False
-    '    End If
-    '    If Txt_nro_doc.Text = "" Then
-    '        MsgBox("El numero de documento no puede estar vacio", MsgBoxStyle.Critical, "Importante")
-    '        Me.Txt_nro_doc.Focus()
-    '        Return False
-    '    End If
+        If tabla.Rows.Count() = 1 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
 
-    '    If Me.CmbCiudad.SelectedIndex = -1 Then
-    '        MsgBox("La ciudad no puede estar vacia", MsgBoxStyle.Critical, "Importante")
-    '        Me.CmbCiudad.Focus()
-    '        Return False
-    '    End If
+    Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
+        Dim conexion As New Data.OleDb.OleDbConnection
+        Dim cmd As New Data.OleDb.OleDbCommand
+        Dim modificacion As String = ""
+        If validar() Then
+            If Me.accion = estado.insertar Then
+                If validar_existencia() = True Then
+                    conexion.ConnectionString = Me.string_conexion
+                    conexion.Open()
+                    modificacion = "Declare @valor int "
+                    modificacion &= " select @valor=id_tipo_doc from TIPOSDOCUMENTOS"
+                    modificacion &= " where nombre_tipo= '" & Me.cmb_tipo_doc_reg.SelectedValue & "'"
+                    modificacion &= " Declare @valor2 int "
+                    modificacion &= " select @valor2=id_hotel from HOTELES"
+                    modificacion &= " where nombre_hotel = '" & Me.Cmb_hotel.SelectedValue & "'"
+                    modificacion &= " Declare @valor3 int "
+                    modificacion &= " select @valor3=id_puesto from PUESTOS"
+                    modificacion &= " where descripcion = '" & Me.CmbPuesto.SelectedValue & "'"
+                    modificacion &= " insert into EMPLEADOS(apellido,nombre,fecha_ingreso,id_hotel,tipo_doc,num_doc,id_puesto)"
+                    modificacion &= " values('" & Me.Txt_apellido.Text & "'"
+                    modificacion &= ",'" & Me.Txt_nombre.Text & "'"
+                    modificacion &= ",'" & Format(Me.DateTimePicker1.Value, "yyyy/dd/MM") & "'"
+                    modificacion &= ",@valor2"
+                    modificacion &= ",@valor"
+                    modificacion &= ",'" & Me.txt_nro_doc_reg.Text & "'"
+                    modificacion &= ",@valor3)"
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandText = modificacion
+                    cmd.Connection = conexion
+                    cmd.ExecuteNonQuery()
+                    conexion.Close()
+                    MessageBox.Show("Se ha guardado el empleado", "importante", MessageBoxButtons.OK)
 
-    '    If Me.CmbTipoTarjeta.SelectedIndex = -1 Then
-    '        MsgBox("El tipo de tarjeta no puede estar vacio", MsgBoxStyle.Critical, "Importante")
-    '        Me.CmbTipoTarjeta.Focus()
-    '        Return False
-    '    End If
+                Else
+                    MessageBox.Show("Ya existe el empleado", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            Else
 
-    '    If Me.TxtNroTarjeta.Text = "" Then
-    '        MsgBox("El numero de tarjeta no puede estar vacio", MsgBoxStyle.Critical, "Importante")
-    '        Me.TxtNroTarjeta.Focus()
-    '        Return False
-    '    End If
+                conexion.ConnectionString = Me.string_conexion
+                conexion.Open()
 
-    '    Return True
+                modificacion = "Declare @valor int "
+                modificacion &= " select @valor=id_tipo_doc from TIPOSDOCUMENTOS"
+                modificacion &= " where nombre_tipo= '" & Me.Cmb_tipo_doc.SelectedValue & "'"
+                modificacion &= " Declare @valor2 int "
+                modificacion &= " select @valor2=id_tipo_doc from TIPOSDOCUMENTOS"
+                modificacion &= " where nombre_tipo= '" & Me.cmb_tipo_doc_reg.SelectedValue & "'"
+                modificacion &= " Update Huesped "
+                modificacion &= " Set nombre = '" & Me.TxtNombre.Text & "'"
+                modificacion &= ", apellido = '" & Me.TxtApellido.Text & "'"
+                modificacion &= ", id_tipo_doc = @valor2"
+                modificacion &= ", nro_doc = '" & Me.Txt_nro_doc.Text & "'"
+                modificacion &= ", id_ciudad = " & Me.txt_ciudad.Text & "'"
+                modificacion &= ", numero_tarjeta = " & Me.TxtNroTarjeta.Text
+                modificacion &= " where tipo_doc = @valor "
+                modificacion &= " and num_doc =" & Me.Txt_nro_doc.Text
+                cmd.CommandType = CommandType.Text
+                cmd.CommandText = modificacion
+                cmd.Connection = conexion
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                MessageBox.Show("Se ha modificado el Huesped", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            End If
+        End If
 
-    'End Function
 
-
-    'Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-    '    Dim conexion As New Data.OleDb.OleDbConnection
-    '    Dim cmd As New Data.OleDb.OleDbCommand
-    '    Dim modificacion As String = ""
-    '    conexion.ConnectionString = Me.string_conexion
-    '    conexion.Open()
-    '    If validar() Then
-    '        modificacion = "Update Huesped "
-    '        modificacion &= "Set nombre = '" & Me.TxtNombre.Text & "'"
-    '        modificacion &= ", apellido = '" & Me.TxtApellido.Text & "'"
-    '        modificacion &= ", id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
-    '        modificacion &= ", nro_doc = '" & Me.Txt_nro_doc.Text & "'"
-    '        modificacion &= ", id_ciudad = " & Me.CmbCiudad.SelectedValue
-    '        modificacion &= ", id_tarjeta = " & Me.CmbTipoTarjeta.SelectedValue
-    '        modificacion &= ", numero_tarjeta = " & Me.TxtNroTarjeta.Text & "'"
-    '        modificacion &= " where id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
-    '        '"and nro_doc = " & Me.Txt_nro_doc.Text
-    '        cmd.CommandType = CommandType.Text
-    '        cmd.CommandText = modificacion
-    '        cmd.Connection = conexion
-    '        cmd.ExecuteNonQuery()
-    '        conexion.Close()
-    '        MessageBox.Show("Se ha modificado el Huesped", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-    '    End If
-    'End Sub
+    End Sub
 End Class

@@ -163,6 +163,9 @@ Partial Class AltaEmpleado
         '
         'DateTimePicker1
         '
+        Me.DateTimePicker1.CalendarFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DateTimePicker1.Checked = False
+        Me.DateTimePicker1.CustomFormat = "yyyyMMdd"
         Me.DateTimePicker1.Enabled = False
         Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DateTimePicker1.Location = New System.Drawing.Point(90, 81)

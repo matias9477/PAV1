@@ -49,9 +49,6 @@
 
     End Function
 
-    Private Sub BtnSalir_Click(sender As Object, e As EventArgs)
-        Me.Close()
-    End Sub
 
     Private Sub cmb_hotel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_hotel.SelectedIndexChanged
         Dim conexion As New Data.OleDb.OleDbConnection
