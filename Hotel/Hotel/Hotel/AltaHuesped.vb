@@ -1,35 +1,39 @@
 ﻿Public Class frm_Huesped
+    Private Sub frm_Huesped_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 
     ''AGREGAR LA CADENA DE CONEXION!!!!!
-    'Dim string_conexion As String = "______"
+    Dim string_conexion As String = "Provider=SQLOLEDB.1;Password=mercedeslucila;Persist Security Info=True;User ID=sa;Initial Catalog=HOTEL;Data Source=localhost\SQLEXPRESS"
+
 
     'Private Sub AltaHuesped_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     '    carga_combo(Me.Cmb_tipo_doc, Me.leo_tabla("Tipo_Doc"), "id_tipo_doc", "tipo_doc")
     'End Sub
 
 
-    'Private Sub carga_combo(ByRef combo As ComboBox, ByVal datos As Data.DataTable, ByVal pk As String, ByVal descripcion As String)
-    '    combo.Items.Clear()
-    '    combo.DataSource = datos
-    '    combo.ValueMember = pk
-    '    combo.DisplayMember = descripcion
-    'End Sub
+    Private Sub carga_combo(ByRef combo As ComboBox, ByVal datos As Data.DataTable, ByVal pk As String, ByVal descripcion As String)
+        combo.Items.Clear()
+        combo.DataSource = datos
+        combo.ValueMember = pk
+        combo.DisplayMember = descripcion
+    End Sub
 
-    'Private Function leo_tabla(ByVal nombre_tabla As String) As Data.DataTable
-    '    Dim conexion As New Data.OleDb.OleDbConnection
-    '    Dim cmd As New Data.OleDb.OleDbCommand
-    '    Dim tabla As New Data.DataTable
+    Private Function leo_tabla(ByVal nombre_tabla As String) As Data.DataTable
+        Dim conexion As New Data.OleDb.OleDbConnection
+        Dim cmd As New Data.OleDb.OleDbCommand
+        Dim tabla As New Data.DataTable
 
-    '    conexion.ConnectionString = Me.string_conexion
-    '    conexion.Open()
-    '    cmd.Connection = conexion
-    '    cmd.CommandType = CommandType.Text
-    '    cmd.CommandText = "select * from " & nombre_tabla
+        conexion.ConnectionString = Me.string_conexion
+        conexion.Open()
+        cmd.Connection = conexion
+        cmd.CommandType = CommandType.Text
+        cmd.CommandText = "select * from " & nombre_tabla
 
-    '    tabla.Load(cmd.ExecuteReader)
-    '    Return tabla
+        tabla.Load(cmd.ExecuteReader)
+        Return tabla
 
-    'End Function
+    End Function
 
     ''PARA BUSCARRR
 
@@ -80,19 +84,19 @@
 
 
     ''' PARA SALIRRRR 
-    ''Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
-    ''    Me.Close()
-    ''End Sub
+    Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
+        Me.Close()
+    End Sub
 
-    'Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-    '    If MessageBox.Show("Está seguro que quiere salir del formulario", "Importante",
-    '        MessageBoxButtons.OKCancel, MessageBoxIcon.Question) =
-    '        Windows.Forms.DialogResult.OK Then
-    '        e.Cancel = False
-    '    Else
-    '        e.Cancel = True
-    '    End If
-    'End Sub
+    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If MessageBox.Show("¿Está seguro que quiere salir del formulario?", "Importante",
+            MessageBoxButtons.OKCancel, MessageBoxIcon.Question) =
+            Windows.Forms.DialogResult.OK Then
+            e.Cancel = False
+        Else
+            e.Cancel = True
+        End If
+    End Sub
 
     ''PARA CANCELARR Y BORRARR 
     'Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click

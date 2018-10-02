@@ -18,7 +18,13 @@
         AltaEmpleado.Show()
     End Sub
 
-    Private Sub frm_menu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+    Private Sub frm_menu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If MessageBox.Show("¿Está seguro que quiere salir del formulario?", "Importante",
+            MessageBoxButtons.OKCancel, MessageBoxIcon.Question) =
+            Windows.Forms.DialogResult.OK Then
+            e.Cancel = False
+        Else
+            e.Cancel = True
+        End If
     End Sub
 End Class

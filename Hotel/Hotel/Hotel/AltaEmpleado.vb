@@ -1,11 +1,17 @@
 ﻿Public Class AltaEmpleado
+    Enum estado
+        insertar
+        modificar
+    End Enum
 
+    Dim accion As estado = estado.modificar
     Dim string_conexion As String = "Provider=SQLOLEDB.1;Password=mercedeslucila;Persist Security Info=True;User ID=sa;Initial Catalog=HOTEL;Data Source=localhost\SQLEXPRESS"
 
     Private Sub frm_Empleado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'carga_combo(Me.CmbPuesto, Me.leo_tabla("Puestos"), "id_puesto", "puesto")
-        'carga_combo(Me.Cmb_hotel, Me.leo_tabla("Hotel"), "id_hotel", "hotel")
+        carga_combo(Me.CmbPuesto, Me.leo_tabla("Puestos"), "id_puesto", "puesto")
+        carga_combo(Me.Cmb_hotel, Me.leo_tabla("Hotel"), "id_hotel", "hotel")
         carga_combo(Me.Cmb_tipo_doc, Me.leo_tabla("TIPOSDOCUMENTOS"), "nombre", "tipodocumento")
+        carga_combo(Me.cmb_tipo_doc_reg, Me.leo_tabla("TIPOSDOCUMENTOS"), "nombre", "tipodocumento")
         BtnGuardar.Enabled = False
         BtnCancelar.Enabled = False
         For Each objeto As System.Windows.Forms.Control In Me.Controls
@@ -101,7 +107,6 @@
                     Cmb_hotel.SelectedValue = tabla.Rows(0)("nombre_hotel")
                     CmbPuesto.SelectedValue = tabla.Rows(0)("descripcion")
 
-
                 End If
             End If
         End If
@@ -114,7 +119,7 @@
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        If MessageBox.Show("Está seguro que quiere salir del formulario", "Importante",
+        If MessageBox.Show("¿Está seguro que quiere salir del formulario?", "Importante",
             MessageBoxButtons.OKCancel, MessageBoxIcon.Question) =
             Windows.Forms.DialogResult.OK Then
             e.Cancel = False
@@ -123,10 +128,8 @@
         End If
     End Sub
 
-
-    'PARA CANCELARR Y BORRARR 
     Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click
-
+        Dim consulta As String = ""
         If MessageBox.Show("Está seguro que desea borrar ese registro", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) = Windows.Forms.DialogResult.OK Then
 
             Dim conexion As New Data.OleDb.OleDbConnection
@@ -134,36 +137,36 @@
             conexion.ConnectionString = Me.string_conexion
             conexion.Open()
             cmd.Connection = conexion
-            cmd.CommandType = CommandType.Text
-            cmd.CommandText = "delete from empleado where  where id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
-            ' "And nro_doc = " & Me.Txt_nro_doc.Text
 
+            consulta = "delete from EMPLEADOS where id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
+            consulta &= " and nro_doc = " & Me.Txt_nro_doc.Text & "'"
+
+            cmd.CommandType = CommandType.Text
             cmd.ExecuteNonQuery()
             conexion.Close()
-
+            MessageBox.Show("Empleado eliminado.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
     End Sub
 
-    'COMO SE HACEEEEEEEE
-    'Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
+    Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
 
-    'For Each objeto As System.Windows.Forms.Control In Me.Controls
-    'If TypeOf objeto Is TextBox Then
-    '           objeto.Text = ""
-    'End If
-    'If TypeOf objeto Is ComboBox Then
-    'Dim actual As ComboBox = objeto
-    '           actual.SelectedIndex = -1
-    'End If
-    'Next
-    '
-    'Me.txt_documento.Enabled = True
-    'Me 'Txt_apellido.Focus()
-    'Me.accion = estado.insertar
+        carga_combo(Me.CmbPuesto, Me.leo_tabla("Puestos"), "id_puesto", "puesto")
+        carga_combo(Me.Cmb_hotel, Me.leo_tabla("Hotel"), "id_hotel", "hotel")
+        carga_combo(Me.Cmb_tipo_doc, Me.leo_tabla("TIPOSDOCUMENTOS"), "nombre", "tipodocumento")
+        carga_combo(Me.cmb_tipo_doc_reg, Me.leo_tabla("TIPOSDOCUMENTOS"), "nombre", "tipodocumento")
+        BtnGuardar.Enabled = False
+        BtnCancelar.Enabled = False
+        For Each objeto As System.Windows.Forms.Control In Me.Controls
+            If TypeOf objeto Is TextBox Then
+                objeto.Text = ""
+            End If
+            If TypeOf objeto Is ComboBox Then
+                Dim actual As ComboBox = objeto
+                actual.SelectedIndex = -1
+            End If
+        Next
 
-    'End Sub
-
-    'PARA MODIFICARRR
+    End Sub
 
     Private Function validar() As Boolean
 
@@ -177,7 +180,7 @@
             Me.Txt_apellido.Focus()
             Return False
         End If
-        If Me.Cmb_tipo_doc.SelectedIndex = -1 Then
+        If Me.cmb_tipo_doc_reg.SelectedIndex = -1 Then
             MsgBox("El tipo de documento no puede estar vacio", MsgBoxStyle.Critical, "Importante")
             Me.Cmb_tipo_doc.Focus()
             Return False
@@ -187,7 +190,11 @@
             Me.Txt_nro_doc.Focus()
             Return False
         End If
-        'If Me.DateTimePicker1. = -1 Then COMO SE HACE 
+
+        If (Me.DateTimePicker1.Value) > (System.DateTime.Now) Then ''''ver si funciona
+            MsgBox("La fecha ingresada debe ser menor o igual a la fecha actual.", MsgBoxStyle.Critical, "Importante")
+            Return False
+        End If
 
         If Me.Cmb_hotel.SelectedIndex = -1 Then
             MsgBox("El hotel no puede estar vacio", MsgBoxStyle.Critical, "Importante")
@@ -205,31 +212,84 @@
 
     End Function
 
+    Private Function validar_existencia() As Boolean
+        Dim conexion As New Data.OleDb.OleDbConnection
+        Dim cmd As New Data.OleDb.OleDbCommand
+        Dim consulta As String = ""
+        Dim tabla As New Data.DataTable
+        conexion.ConnectionString = Me.string_conexion
+        conexion.Open()
+        consulta = "Select * from EMPLEADOS where id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
+        consulta &= " and nro_doc = " & Me.Txt_nro_doc.Text & "'"
+        cmd.CommandType = CommandType.Text
+        cmd.CommandText = consulta
+        cmd.Connection = conexion
 
+        tabla.Load(cmd.ExecuteReader())
+        conexion.Close()
+
+        If tabla.Rows.Count() = 1 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
 
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
+
         Dim conexion As New Data.OleDb.OleDbConnection
         Dim cmd As New Data.OleDb.OleDbCommand
         Dim modificacion As String = ""
-        conexion.ConnectionString = Me.string_conexion
-        conexion.Open()
+
         If validar() Then
-            modificacion = "Update Empleado "
-            modificacion &= "Set nombre = '" & Me.Txt_nombre.Text & "'"
+            If Me.accion = estado.insertar Then
+                If validar_existencia() = True Then
+                    conexion.ConnectionString = Me.string_conexion
+                    conexion.Open()
+
+                    modificacion = "Update Empleado "
+                    modificacion &= "Set nombre = '" & Me.Txt_nombre.Text & "'"
                     modificacion &= ", apellido = '" & Me.Txt_apellido.Text & "'"
-            modificacion &= ", id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
-            modificacion &= ", nro_doc = '" & Me.Txt_nro_doc.Text & "'"
-            modificacion &= ", fecha_ingreso = " & Me.DateTimePicker1.Text
-            modificacion &= ", id_hotel = " & Me.Cmb_hotel.SelectedValue
-            modificacion &= ", id_puesto = " & Me.CmbPuesto.SelectedValue
-            modificacion &= " where id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
-            '"and nro_doc = " & Me.Txt_nro_doc.Text
-            cmd.CommandType = CommandType.Text
-            cmd.CommandText = modificacion
-            cmd.Connection = conexion
-            cmd.ExecuteNonQuery()
-            conexion.Close()
-            MessageBox.Show("Se ha modificado el empleado", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    modificacion &= ", id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
+                    modificacion &= ", nro_doc = '" & Me.Txt_nro_doc.Text & "'"
+                    modificacion &= ", fecha_ingreso = " & Me.DateTimePicker1.Text & "'"
+                    modificacion &= ", id_hotel = " & Me.Cmb_hotel.SelectedValue
+                    modificacion &= ", id_puesto = " & Me.CmbPuesto.SelectedValue
+                    modificacion &= " where id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue & "'"
+
+                    cmd.CommandType = CommandType.Text
+                    cmd.CommandText = modificacion
+                    cmd.Connection = conexion
+                    cmd.ExecuteNonQuery()
+                    conexion.Close()
+                    MessageBox.Show("Se ha guardado el empleado.", "importante", MessageBoxButtons.OK)
+
+                Else
+                    MessageBox.Show("Ya exite dicho empleado.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            Else
+                conexion.ConnectionString = Me.string_conexion
+                conexion.Open()
+
+                modificacion = "Update Empleado "
+                modificacion &= "Set nombre = '" & Me.Txt_nombre.Text & "'"
+                modificacion &= ", apellido = '" & Me.Txt_apellido.Text & "'"
+                modificacion &= ", id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue
+                modificacion &= ", nro_doc = '" & Me.Txt_nro_doc.Text & "'"
+                modificacion &= ", fecha_ingreso = " & Me.DateTimePicker1.Text & "'"
+                modificacion &= ", id_hotel = " & Me.Cmb_hotel.SelectedValue
+                modificacion &= ", id_puesto = " & Me.CmbPuesto.SelectedValue
+                modificacion &= " where id_tipo_doc = " & Me.Cmb_tipo_doc.SelectedValue & "'"
+
+                cmd.CommandType = CommandType.Text
+                cmd.CommandText = modificacion
+                cmd.Connection = conexion
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+
+                MessageBox.Show("Se ha modificado el empleado.", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+
+            End If
         End If
     End Sub
 

@@ -39,7 +39,7 @@ Partial Class frm_Huesped
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CmbTipoTarjeta = New System.Windows.Forms.ComboBox()
         Me.BtnBuscar = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnSalir = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.cmbTipoDoc = New System.Windows.Forms.ComboBox()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -198,14 +198,14 @@ Partial Class frm_Huesped
         Me.BtnBuscar.TabIndex = 15
         Me.BtnBuscar.UseVisualStyleBackColor = True
         '
-        'Button1
+        'btnSalir
         '
-        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(514, 231)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(39, 43)
-        Me.Button1.TabIndex = 16
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnSalir.Image = CType(resources.GetObject("btnSalir.Image"), System.Drawing.Image)
+        Me.btnSalir.Location = New System.Drawing.Point(514, 231)
+        Me.btnSalir.Name = "btnSalir"
+        Me.btnSalir.Size = New System.Drawing.Size(39, 43)
+        Me.btnSalir.TabIndex = 16
+        Me.btnSalir.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -301,7 +301,7 @@ Partial Class frm_Huesped
         Me.Controls.Add(Me.Cmb_tipo_doc)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnSalir)
         Me.Controls.Add(Me.BtnBuscar)
         Me.Controls.Add(Me.BtnCancelar)
         Me.Controls.Add(Me.BtnGuardar)
@@ -333,7 +333,7 @@ Partial Class frm_Huesped
     Friend WithEvents Label6 As Label
     Friend WithEvents CmbTipoTarjeta As ComboBox
     Friend WithEvents BtnBuscar As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnSalir As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents txt_nro_docum As TextBox
     Friend WithEvents Label7 As Label

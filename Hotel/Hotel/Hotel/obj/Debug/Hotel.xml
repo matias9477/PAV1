@@ -52,5 +52,8 @@ Hotel
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="M:Hotel.frm_Huesped.BtnSalir_Click(System.Object,System.EventArgs)">
+ PARA SALIRRRR 
+</member>
 </members>
 </doc>
