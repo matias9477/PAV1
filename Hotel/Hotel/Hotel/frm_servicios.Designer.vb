@@ -68,7 +68,7 @@ Partial Class frm_servicios
         Me.cmb_hotel.Location = New System.Drawing.Point(107, 12)
         Me.cmb_hotel.Name = "cmb_hotel"
         Me.cmb_hotel.Size = New System.Drawing.Size(121, 21)
-        Me.cmb_hotel.TabIndex = 32
+        Me.cmb_hotel.TabIndex = 0
         '
         'BtnBuscar
         '
@@ -76,7 +76,7 @@ Partial Class frm_servicios
         Me.BtnBuscar.Location = New System.Drawing.Point(244, 16)
         Me.BtnBuscar.Name = "BtnBuscar"
         Me.BtnBuscar.Size = New System.Drawing.Size(39, 39)
-        Me.BtnBuscar.TabIndex = 31
+        Me.BtnBuscar.TabIndex = 2
         Me.BtnBuscar.UseVisualStyleBackColor = True
         '
         'cmb_servicio
@@ -85,7 +85,7 @@ Partial Class frm_servicios
         Me.cmb_servicio.Location = New System.Drawing.Point(107, 39)
         Me.cmb_servicio.Name = "cmb_servicio"
         Me.cmb_servicio.Size = New System.Drawing.Size(121, 21)
-        Me.cmb_servicio.TabIndex = 30
+        Me.cmb_servicio.TabIndex = 1
         '
         'GroupBox1
         '
@@ -109,7 +109,7 @@ Partial Class frm_servicios
         Me.txt_precio.Location = New System.Drawing.Point(90, 98)
         Me.txt_precio.Name = "txt_precio"
         Me.txt_precio.Size = New System.Drawing.Size(121, 20)
-        Me.txt_precio.TabIndex = 32
+        Me.txt_precio.TabIndex = 3
         '
         'Label2
         '
@@ -125,7 +125,7 @@ Partial Class frm_servicios
         Me.txt_descripcion.Location = New System.Drawing.Point(90, 72)
         Me.txt_descripcion.Name = "txt_descripcion"
         Me.txt_descripcion.Size = New System.Drawing.Size(381, 20)
-        Me.txt_descripcion.TabIndex = 28
+        Me.txt_descripcion.TabIndex = 2
         '
         'Label3
         '
@@ -141,7 +141,7 @@ Partial Class frm_servicios
         Me.txt_servicio_reg.Location = New System.Drawing.Point(90, 45)
         Me.txt_servicio_reg.Name = "txt_servicio_reg"
         Me.txt_servicio_reg.Size = New System.Drawing.Size(121, 20)
-        Me.txt_servicio_reg.TabIndex = 24
+        Me.txt_servicio_reg.TabIndex = 1
         '
         'cmb_hotel_reg
         '
@@ -149,7 +149,7 @@ Partial Class frm_servicios
         Me.cmb_hotel_reg.Location = New System.Drawing.Point(90, 19)
         Me.cmb_hotel_reg.Name = "cmb_hotel_reg"
         Me.cmb_hotel_reg.Size = New System.Drawing.Size(121, 21)
-        Me.cmb_hotel_reg.TabIndex = 25
+        Me.cmb_hotel_reg.TabIndex = 0
         '
         'Label1
         '
@@ -176,7 +176,7 @@ Partial Class frm_servicios
         Me.BtnCancelar.Location = New System.Drawing.Point(144, 354)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(37, 38)
-        Me.BtnCancelar.TabIndex = 37
+        Me.BtnCancelar.TabIndex = 5
         Me.BtnCancelar.UseVisualStyleBackColor = True
         '
         'BtnGuardar
@@ -186,7 +186,7 @@ Partial Class frm_servicios
         Me.BtnGuardar.Location = New System.Drawing.Point(83, 354)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(37, 38)
-        Me.BtnGuardar.TabIndex = 36
+        Me.BtnGuardar.TabIndex = 4
         Me.BtnGuardar.UseVisualStyleBackColor = True
         '
         'BtnNuevo
@@ -195,7 +195,7 @@ Partial Class frm_servicios
         Me.BtnNuevo.Location = New System.Drawing.Point(27, 356)
         Me.BtnNuevo.Name = "BtnNuevo"
         Me.BtnNuevo.Size = New System.Drawing.Size(41, 36)
-        Me.BtnNuevo.TabIndex = 35
+        Me.BtnNuevo.TabIndex = 3
         Me.BtnNuevo.UseVisualStyleBackColor = True
         '
         'btnSalir
@@ -204,7 +204,7 @@ Partial Class frm_servicios
         Me.btnSalir.Location = New System.Drawing.Point(465, 349)
         Me.btnSalir.Name = "btnSalir"
         Me.btnSalir.Size = New System.Drawing.Size(39, 43)
-        Me.btnSalir.TabIndex = 40
+        Me.btnSalir.TabIndex = 6
         Me.btnSalir.UseVisualStyleBackColor = True
         '
         'frm_servicios

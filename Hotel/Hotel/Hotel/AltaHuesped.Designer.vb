@@ -38,6 +38,7 @@ Partial Class frm_Huesped
         Me.BtnBuscar = New System.Windows.Forms.Button()
         Me.btnSalir = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txt_ciudad = New System.Windows.Forms.TextBox()
         Me.cmb_tipo_doc_reg = New System.Windows.Forms.ComboBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.txt_nro_doc_reg = New System.Windows.Forms.TextBox()
@@ -45,8 +46,15 @@ Partial Class frm_Huesped
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Cmb_tipo_doc = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.txt_ciudad = New System.Windows.Forms.TextBox()
+        Me.txt_numero_hab = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.cmb_hotel = New System.Windows.Forms.ComboBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -83,7 +91,7 @@ Partial Class frm_Huesped
         Me.TxtNombre.MaxLength = 20
         Me.TxtNombre.Name = "TxtNombre"
         Me.TxtNombre.Size = New System.Drawing.Size(160, 20)
-        Me.TxtNombre.TabIndex = 4
+        Me.TxtNombre.TabIndex = 1
         '
         'Label3
         '
@@ -128,13 +136,13 @@ Partial Class frm_Huesped
         Me.TxtNroTarjeta.MaxLength = 20
         Me.TxtNroTarjeta.Name = "TxtNroTarjeta"
         Me.TxtNroTarjeta.Size = New System.Drawing.Size(134, 20)
-        Me.TxtNroTarjeta.TabIndex = 3
+        Me.TxtNroTarjeta.TabIndex = 5
         '
         'BtnNuevo
         '
         Me.BtnNuevo.Enabled = False
         Me.BtnNuevo.Image = CType(resources.GetObject("BtnNuevo.Image"), System.Drawing.Image)
-        Me.BtnNuevo.Location = New System.Drawing.Point(21, 238)
+        Me.BtnNuevo.Location = New System.Drawing.Point(12, 333)
         Me.BtnNuevo.Name = "BtnNuevo"
         Me.BtnNuevo.Size = New System.Drawing.Size(41, 36)
         Me.BtnNuevo.TabIndex = 3
@@ -144,7 +152,7 @@ Partial Class frm_Huesped
         '
         Me.BtnGuardar.Enabled = False
         Me.BtnGuardar.Image = CType(resources.GetObject("BtnGuardar.Image"), System.Drawing.Image)
-        Me.BtnGuardar.Location = New System.Drawing.Point(86, 236)
+        Me.BtnGuardar.Location = New System.Drawing.Point(77, 331)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(37, 38)
         Me.BtnGuardar.TabIndex = 4
@@ -154,7 +162,7 @@ Partial Class frm_Huesped
         '
         Me.BtnCancelar.Enabled = False
         Me.BtnCancelar.Image = CType(resources.GetObject("BtnCancelar.Image"), System.Drawing.Image)
-        Me.BtnCancelar.Location = New System.Drawing.Point(149, 236)
+        Me.BtnCancelar.Location = New System.Drawing.Point(140, 331)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(35, 38)
         Me.BtnCancelar.TabIndex = 5
@@ -172,7 +180,7 @@ Partial Class frm_Huesped
         'btnSalir
         '
         Me.btnSalir.Image = CType(resources.GetObject("btnSalir.Image"), System.Drawing.Image)
-        Me.btnSalir.Location = New System.Drawing.Point(514, 231)
+        Me.btnSalir.Location = New System.Drawing.Point(505, 326)
         Me.btnSalir.Name = "btnSalir"
         Me.btnSalir.Size = New System.Drawing.Size(39, 43)
         Me.btnSalir.TabIndex = 6
@@ -199,6 +207,15 @@ Partial Class frm_Huesped
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Huesped "
         '
+        'txt_ciudad
+        '
+        Me.txt_ciudad.Enabled = False
+        Me.txt_ciudad.Location = New System.Drawing.Point(103, 95)
+        Me.txt_ciudad.MaxLength = 20
+        Me.txt_ciudad.Name = "txt_ciudad"
+        Me.txt_ciudad.Size = New System.Drawing.Size(134, 20)
+        Me.txt_ciudad.TabIndex = 4
+        '
         'cmb_tipo_doc_reg
         '
         Me.cmb_tipo_doc_reg.Enabled = False
@@ -206,7 +223,7 @@ Partial Class frm_Huesped
         Me.cmb_tipo_doc_reg.Location = New System.Drawing.Point(103, 59)
         Me.cmb_tipo_doc_reg.Name = "cmb_tipo_doc_reg"
         Me.cmb_tipo_doc_reg.Size = New System.Drawing.Size(121, 21)
-        Me.cmb_tipo_doc_reg.TabIndex = 1
+        Me.cmb_tipo_doc_reg.TabIndex = 2
         '
         'Label10
         '
@@ -224,7 +241,7 @@ Partial Class frm_Huesped
         Me.txt_nro_doc_reg.MaxLength = 10
         Me.txt_nro_doc_reg.Name = "txt_nro_doc_reg"
         Me.txt_nro_doc_reg.Size = New System.Drawing.Size(124, 20)
-        Me.txt_nro_doc_reg.TabIndex = 5
+        Me.txt_nro_doc_reg.TabIndex = 3
         '
         'Label7
         '
@@ -261,20 +278,84 @@ Partial Class frm_Huesped
         Me.Label9.TabIndex = 20
         Me.Label9.Text = "N° Documento"
         '
-        'txt_ciudad
+        'txt_numero_hab
         '
-        Me.txt_ciudad.Enabled = False
-        Me.txt_ciudad.Location = New System.Drawing.Point(103, 95)
-        Me.txt_ciudad.MaxLength = 20
-        Me.txt_ciudad.Name = "txt_ciudad"
-        Me.txt_ciudad.Size = New System.Drawing.Size(134, 20)
-        Me.txt_ciudad.TabIndex = 2
+        Me.txt_numero_hab.Enabled = False
+        Me.txt_numero_hab.Location = New System.Drawing.Point(113, 27)
+        Me.txt_numero_hab.MaxLength = 20
+        Me.txt_numero_hab.Name = "txt_numero_hab"
+        Me.txt_numero_hab.Size = New System.Drawing.Size(124, 20)
+        Me.txt_numero_hab.TabIndex = 0
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(53, 30)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(44, 13)
+        Me.Label12.TabIndex = 0
+        Me.Label12.Text = "Número"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(272, 30)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(32, 13)
+        Me.Label11.TabIndex = 18
+        Me.Label11.Text = "Hotel"
+        '
+        'cmb_hotel
+        '
+        Me.cmb_hotel.Enabled = False
+        Me.cmb_hotel.FormattingEnabled = True
+        Me.cmb_hotel.Location = New System.Drawing.Point(310, 26)
+        Me.cmb_hotel.Name = "cmb_hotel"
+        Me.cmb_hotel.Size = New System.Drawing.Size(121, 21)
+        Me.cmb_hotel.TabIndex = 2
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.DateTimePicker2)
+        Me.GroupBox2.Controls.Add(Me.Label13)
+        Me.GroupBox2.Controls.Add(Me.cmb_hotel)
+        Me.GroupBox2.Controls.Add(Me.Label11)
+        Me.GroupBox2.Controls.Add(Me.Label12)
+        Me.GroupBox2.Controls.Add(Me.txt_numero_hab)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 223)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(498, 89)
+        Me.GroupBox2.TabIndex = 20
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Habitación "
+        '
+        'DateTimePicker2
+        '
+        Me.DateTimePicker2.CalendarFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DateTimePicker2.Checked = False
+        Me.DateTimePicker2.CustomFormat = "yyyyMMdd"
+        Me.DateTimePicker2.Enabled = False
+        Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePicker2.Location = New System.Drawing.Point(113, 58)
+        Me.DateTimePicker2.Name = "DateTimePicker2"
+        Me.DateTimePicker2.Size = New System.Drawing.Size(105, 20)
+        Me.DateTimePicker2.TabIndex = 22
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(6, 65)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(74, 13)
+        Me.Label13.TabIndex = 20
+        Me.Label13.Text = "Fecha ingreso"
         '
         'frm_Huesped
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(572, 293)
+        Me.ClientSize = New System.Drawing.Size(561, 386)
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Cmb_tipo_doc)
         Me.Controls.Add(Me.Label8)
@@ -290,6 +371,8 @@ Partial Class frm_Huesped
         Me.Text = "Alta Huesped"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -318,4 +401,11 @@ Partial Class frm_Huesped
     Friend WithEvents cmb_tipo_doc_reg As ComboBox
     Friend WithEvents Label10 As Label
     Friend WithEvents txt_ciudad As TextBox
+    Friend WithEvents txt_numero_hab As TextBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents cmb_hotel As ComboBox
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents DateTimePicker2 As DateTimePicker
 End Class

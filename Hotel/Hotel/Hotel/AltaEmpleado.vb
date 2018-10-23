@@ -311,7 +311,7 @@
                 modificacion &= " ,id_puesto=@valor2"
                 modificacion &= ",id_hotel=@valor3"
                 modificacion &= ",num_doc=" & Me.txt_nro_doc_reg.Text
-                modificacion &= ",fecha_ingreso='" & Format(Me.DateTimePicker1.Value, "yyyy/dd/MM") & "'"
+                modificacion &= ",fecha_ingreso='" & Format(Me.DateTimePicker1.Value, "yyyy/MM/dd") & "'"
                 modificacion &= " where tipo_doc = @valor4"
                 modificacion &= " and num_doc=" & Me.Txt_nro_doc.Text
 

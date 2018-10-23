@@ -65,7 +65,7 @@ Partial Class AltaEmpleado
         Me.Cmb_tipo_doc.Location = New System.Drawing.Point(104, 6)
         Me.Cmb_tipo_doc.Name = "Cmb_tipo_doc"
         Me.Cmb_tipo_doc.Size = New System.Drawing.Size(121, 21)
-        Me.Cmb_tipo_doc.TabIndex = 1
+        Me.Cmb_tipo_doc.TabIndex = 0
         '
         'Label2
         '
@@ -82,7 +82,7 @@ Partial Class AltaEmpleado
         Me.Txt_nro_doc.MaxLength = 10
         Me.Txt_nro_doc.Name = "Txt_nro_doc"
         Me.Txt_nro_doc.Size = New System.Drawing.Size(120, 20)
-        Me.Txt_nro_doc.TabIndex = 3
+        Me.Txt_nro_doc.TabIndex = 1
         '
         'BtnBuscar
         '
@@ -90,7 +90,7 @@ Partial Class AltaEmpleado
         Me.BtnBuscar.Location = New System.Drawing.Point(262, 9)
         Me.BtnBuscar.Name = "BtnBuscar"
         Me.BtnBuscar.Size = New System.Drawing.Size(42, 44)
-        Me.BtnBuscar.TabIndex = 16
+        Me.BtnBuscar.TabIndex = 2
         Me.BtnBuscar.UseVisualStyleBackColor = True
         '
         'GroupBox1
@@ -112,7 +112,7 @@ Partial Class AltaEmpleado
         Me.GroupBox1.Location = New System.Drawing.Point(15, 81)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(512, 152)
-        Me.GroupBox1.TabIndex = 17
+        Me.GroupBox1.TabIndex = 7
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Empleado"
         '
@@ -123,7 +123,7 @@ Partial Class AltaEmpleado
         Me.Cmb_hotel.Location = New System.Drawing.Point(58, 107)
         Me.Cmb_hotel.Name = "Cmb_hotel"
         Me.Cmb_hotel.Size = New System.Drawing.Size(121, 21)
-        Me.Cmb_hotel.TabIndex = 29
+        Me.Cmb_hotel.TabIndex = 5
         '
         'Label9
         '
@@ -141,7 +141,7 @@ Partial Class AltaEmpleado
         Me.CmbPuesto.Location = New System.Drawing.Point(353, 107)
         Me.CmbPuesto.Name = "CmbPuesto"
         Me.CmbPuesto.Size = New System.Drawing.Size(121, 21)
-        Me.CmbPuesto.TabIndex = 27
+        Me.CmbPuesto.TabIndex = 6
         '
         'Label8
         '
@@ -171,7 +171,7 @@ Partial Class AltaEmpleado
         Me.DateTimePicker1.Location = New System.Drawing.Point(90, 81)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(105, 20)
-        Me.DateTimePicker1.TabIndex = 24
+        Me.DateTimePicker1.TabIndex = 4
         '
         'Txt_nombre
         '
@@ -180,7 +180,7 @@ Partial Class AltaEmpleado
         Me.Txt_nombre.MaxLength = 20
         Me.Txt_nombre.Name = "Txt_nombre"
         Me.Txt_nombre.Size = New System.Drawing.Size(162, 20)
-        Me.Txt_nombre.TabIndex = 23
+        Me.Txt_nombre.TabIndex = 1
         '
         'Txt_apellido
         '
@@ -189,7 +189,7 @@ Partial Class AltaEmpleado
         Me.Txt_apellido.MaxLength = 20
         Me.Txt_apellido.Name = "Txt_apellido"
         Me.Txt_apellido.Size = New System.Drawing.Size(162, 20)
-        Me.Txt_apellido.TabIndex = 22
+        Me.Txt_apellido.TabIndex = 0
         '
         'txt_nro_doc_reg
         '
@@ -198,7 +198,7 @@ Partial Class AltaEmpleado
         Me.txt_nro_doc_reg.MaxLength = 10
         Me.txt_nro_doc_reg.Name = "txt_nro_doc_reg"
         Me.txt_nro_doc_reg.Size = New System.Drawing.Size(129, 20)
-        Me.txt_nro_doc_reg.TabIndex = 21
+        Me.txt_nro_doc_reg.TabIndex = 3
         '
         'Label4
         '
@@ -234,7 +234,7 @@ Partial Class AltaEmpleado
         Me.cmb_tipo_doc_reg.Location = New System.Drawing.Point(99, 48)
         Me.cmb_tipo_doc_reg.Name = "cmb_tipo_doc_reg"
         Me.cmb_tipo_doc_reg.Size = New System.Drawing.Size(121, 21)
-        Me.cmb_tipo_doc_reg.TabIndex = 19
+        Me.cmb_tipo_doc_reg.TabIndex = 2
         '
         'Label6
         '
@@ -251,7 +251,7 @@ Partial Class AltaEmpleado
         Me.BtnSalir.Location = New System.Drawing.Point(470, 252)
         Me.BtnSalir.Name = "BtnSalir"
         Me.BtnSalir.Size = New System.Drawing.Size(39, 43)
-        Me.BtnSalir.TabIndex = 21
+        Me.BtnSalir.TabIndex = 6
         Me.BtnSalir.UseVisualStyleBackColor = True
         '
         'BtnCancelar
@@ -260,7 +260,7 @@ Partial Class AltaEmpleado
         Me.BtnCancelar.Location = New System.Drawing.Point(133, 261)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(35, 36)
-        Me.BtnCancelar.TabIndex = 20
+        Me.BtnCancelar.TabIndex = 5
         Me.BtnCancelar.UseVisualStyleBackColor = True
         '
         'BtnGuardar
@@ -270,7 +270,7 @@ Partial Class AltaEmpleado
         Me.BtnGuardar.Location = New System.Drawing.Point(80, 259)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(37, 38)
-        Me.BtnGuardar.TabIndex = 19
+        Me.BtnGuardar.TabIndex = 4
         Me.BtnGuardar.UseVisualStyleBackColor = True
         '
         'BtnNuevo
@@ -279,7 +279,7 @@ Partial Class AltaEmpleado
         Me.BtnNuevo.Location = New System.Drawing.Point(19, 259)
         Me.BtnNuevo.Name = "BtnNuevo"
         Me.BtnNuevo.Size = New System.Drawing.Size(41, 36)
-        Me.BtnNuevo.TabIndex = 18
+        Me.BtnNuevo.TabIndex = 3
         Me.BtnNuevo.UseVisualStyleBackColor = True
         '
         'AltaEmpleado

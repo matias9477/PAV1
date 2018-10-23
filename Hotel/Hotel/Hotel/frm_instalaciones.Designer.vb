@@ -35,12 +35,12 @@ Partial Class frm_instalaciones
         Me.txt_instalacion = New System.Windows.Forms.TextBox()
         Me.cmb_hotel_reg = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.chk_disponible_reg = New System.Windows.Forms.CheckBox()
         Me.txt_descripcion = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.chk_disponible_reg = New System.Windows.Forms.CheckBox()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -50,7 +50,7 @@ Partial Class frm_instalaciones
         Me.BtnSalir.Location = New System.Drawing.Point(473, 312)
         Me.BtnSalir.Name = "BtnSalir"
         Me.BtnSalir.Size = New System.Drawing.Size(39, 43)
-        Me.BtnSalir.TabIndex = 16
+        Me.BtnSalir.TabIndex = 6
         Me.BtnSalir.UseVisualStyleBackColor = True
         '
         'BtnCancelar
@@ -60,7 +60,7 @@ Partial Class frm_instalaciones
         Me.BtnCancelar.Location = New System.Drawing.Point(152, 317)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(37, 38)
-        Me.BtnCancelar.TabIndex = 15
+        Me.BtnCancelar.TabIndex = 5
         Me.BtnCancelar.UseVisualStyleBackColor = True
         '
         'BtnGuardar
@@ -70,7 +70,7 @@ Partial Class frm_instalaciones
         Me.BtnGuardar.Location = New System.Drawing.Point(91, 317)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(37, 38)
-        Me.BtnGuardar.TabIndex = 14
+        Me.BtnGuardar.TabIndex = 4
         Me.BtnGuardar.UseVisualStyleBackColor = True
         '
         'BtnNuevo
@@ -79,7 +79,7 @@ Partial Class frm_instalaciones
         Me.BtnNuevo.Location = New System.Drawing.Point(35, 319)
         Me.BtnNuevo.Name = "BtnNuevo"
         Me.BtnNuevo.Size = New System.Drawing.Size(41, 36)
-        Me.BtnNuevo.TabIndex = 13
+        Me.BtnNuevo.TabIndex = 3
         Me.BtnNuevo.UseVisualStyleBackColor = True
         '
         'BtnBuscar
@@ -88,7 +88,7 @@ Partial Class frm_instalaciones
         Me.BtnBuscar.Location = New System.Drawing.Point(248, 16)
         Me.BtnBuscar.Name = "BtnBuscar"
         Me.BtnBuscar.Size = New System.Drawing.Size(39, 39)
-        Me.BtnBuscar.TabIndex = 12
+        Me.BtnBuscar.TabIndex = 2
         Me.BtnBuscar.UseVisualStyleBackColor = True
         '
         'cmb_instalacion
@@ -97,7 +97,7 @@ Partial Class frm_instalaciones
         Me.cmb_instalacion.Location = New System.Drawing.Point(111, 39)
         Me.cmb_instalacion.Name = "cmb_instalacion"
         Me.cmb_instalacion.Size = New System.Drawing.Size(121, 21)
-        Me.cmb_instalacion.TabIndex = 11
+        Me.cmb_instalacion.TabIndex = 1
         '
         'Label4
         '
@@ -114,7 +114,7 @@ Partial Class frm_instalaciones
         Me.cmb_hotel.Location = New System.Drawing.Point(111, 12)
         Me.cmb_hotel.Name = "cmb_hotel"
         Me.cmb_hotel.Size = New System.Drawing.Size(121, 21)
-        Me.cmb_hotel.TabIndex = 20
+        Me.cmb_hotel.TabIndex = 0
         '
         'Label1
         '
@@ -130,7 +130,7 @@ Partial Class frm_instalaciones
         Me.txt_instalacion.Location = New System.Drawing.Point(90, 45)
         Me.txt_instalacion.Name = "txt_instalacion"
         Me.txt_instalacion.Size = New System.Drawing.Size(121, 20)
-        Me.txt_instalacion.TabIndex = 24
+        Me.txt_instalacion.TabIndex = 1
         '
         'cmb_hotel_reg
         '
@@ -138,7 +138,7 @@ Partial Class frm_instalaciones
         Me.cmb_hotel_reg.Location = New System.Drawing.Point(90, 19)
         Me.cmb_hotel_reg.Name = "cmb_hotel_reg"
         Me.cmb_hotel_reg.Size = New System.Drawing.Size(121, 21)
-        Me.cmb_hotel_reg.TabIndex = 25
+        Me.cmb_hotel_reg.TabIndex = 0
         '
         'GroupBox1
         '
@@ -157,12 +157,32 @@ Partial Class frm_instalaciones
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Instalación"
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(27, 99)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(43, 13)
+        Me.Label7.TabIndex = 31
+        Me.Label7.Text = "Estado:"
+        '
+        'chk_disponible_reg
+        '
+        Me.chk_disponible_reg.AutoSize = True
+        Me.chk_disponible_reg.Enabled = False
+        Me.chk_disponible_reg.Location = New System.Drawing.Point(90, 98)
+        Me.chk_disponible_reg.Name = "chk_disponible_reg"
+        Me.chk_disponible_reg.Size = New System.Drawing.Size(78, 17)
+        Me.chk_disponible_reg.TabIndex = 3
+        Me.chk_disponible_reg.Text = "Disponible "
+        Me.chk_disponible_reg.UseVisualStyleBackColor = True
+        '
         'txt_descripcion
         '
         Me.txt_descripcion.Location = New System.Drawing.Point(90, 72)
         Me.txt_descripcion.Name = "txt_descripcion"
         Me.txt_descripcion.Size = New System.Drawing.Size(381, 20)
-        Me.txt_descripcion.TabIndex = 28
+        Me.txt_descripcion.TabIndex = 2
         '
         'Label3
         '
@@ -190,26 +210,6 @@ Partial Class frm_instalaciones
         Me.Label6.Size = New System.Drawing.Size(58, 13)
         Me.Label6.TabIndex = 29
         Me.Label6.Text = "Instalación"
-        '
-        'chk_disponible_reg
-        '
-        Me.chk_disponible_reg.AutoSize = True
-        Me.chk_disponible_reg.Enabled = False
-        Me.chk_disponible_reg.Location = New System.Drawing.Point(90, 98)
-        Me.chk_disponible_reg.Name = "chk_disponible_reg"
-        Me.chk_disponible_reg.Size = New System.Drawing.Size(78, 17)
-        Me.chk_disponible_reg.TabIndex = 30
-        Me.chk_disponible_reg.Text = "Disponible "
-        Me.chk_disponible_reg.UseVisualStyleBackColor = True
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(27, 99)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(43, 13)
-        Me.Label7.TabIndex = 31
-        Me.Label7.Text = "Estado:"
         '
         'frm_instalaciones
         '

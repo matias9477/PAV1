@@ -42,7 +42,12 @@ Partial Class frm_habitacion
         Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.BtnCancelar = New System.Windows.Forms.Button()
         Me.BtnSalir = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.column_hotel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Huesped = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.column_habit = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -173,7 +178,7 @@ Partial Class frm_habitacion
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.chebox_disponible)
         Me.GroupBox1.Controls.Add(Me.txt_descr_habit)
-        Me.GroupBox1.Location = New System.Drawing.Point(27, 94)
+        Me.GroupBox1.Location = New System.Drawing.Point(27, 265)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(477, 131)
         Me.GroupBox1.TabIndex = 9
@@ -192,7 +197,7 @@ Partial Class frm_habitacion
         'BtnNuevo
         '
         Me.BtnNuevo.Image = CType(resources.GetObject("BtnNuevo.Image"), System.Drawing.Image)
-        Me.BtnNuevo.Location = New System.Drawing.Point(30, 254)
+        Me.BtnNuevo.Location = New System.Drawing.Point(30, 425)
         Me.BtnNuevo.Name = "BtnNuevo"
         Me.BtnNuevo.Size = New System.Drawing.Size(41, 36)
         Me.BtnNuevo.TabIndex = 3
@@ -202,7 +207,7 @@ Partial Class frm_habitacion
         '
         Me.BtnGuardar.Enabled = False
         Me.BtnGuardar.Image = CType(resources.GetObject("BtnGuardar.Image"), System.Drawing.Image)
-        Me.BtnGuardar.Location = New System.Drawing.Point(86, 254)
+        Me.BtnGuardar.Location = New System.Drawing.Point(86, 425)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(37, 38)
         Me.BtnGuardar.TabIndex = 4
@@ -212,7 +217,7 @@ Partial Class frm_habitacion
         '
         Me.BtnCancelar.Enabled = False
         Me.BtnCancelar.Image = CType(resources.GetObject("BtnCancelar.Image"), System.Drawing.Image)
-        Me.BtnCancelar.Location = New System.Drawing.Point(147, 254)
+        Me.BtnCancelar.Location = New System.Drawing.Point(147, 425)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(37, 38)
         Me.BtnCancelar.TabIndex = 5
@@ -221,17 +226,42 @@ Partial Class frm_habitacion
         'BtnSalir
         '
         Me.BtnSalir.Image = CType(resources.GetObject("BtnSalir.Image"), System.Drawing.Image)
-        Me.BtnSalir.Location = New System.Drawing.Point(465, 252)
+        Me.BtnSalir.Location = New System.Drawing.Point(465, 423)
         Me.BtnSalir.Name = "BtnSalir"
         Me.BtnSalir.Size = New System.Drawing.Size(39, 43)
         Me.BtnSalir.TabIndex = 6
         Me.BtnSalir.UseVisualStyleBackColor = True
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.column_hotel, Me.Huesped, Me.column_habit})
+        Me.DataGridView1.Location = New System.Drawing.Point(45, 93)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(344, 150)
+        Me.DataGridView1.TabIndex = 10
+        '
+        'column_hotel
+        '
+        Me.column_hotel.HeaderText = "hotel"
+        Me.column_hotel.Name = "column_hotel"
+        '
+        'Huesped
+        '
+        Me.Huesped.HeaderText = "Column_huesped"
+        Me.Huesped.Name = "Huesped"
+        '
+        'column_habit
+        '
+        Me.column_habit.HeaderText = "Habitacion"
+        Me.column_habit.Name = "column_habit"
+        '
         'frm_habitacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(531, 315)
+        Me.ClientSize = New System.Drawing.Size(537, 477)
+        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.BtnSalir)
         Me.Controls.Add(Me.BtnCancelar)
         Me.Controls.Add(Me.BtnGuardar)
@@ -246,6 +276,7 @@ Partial Class frm_habitacion
         Me.Text = "Habitaciones"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -270,4 +301,8 @@ Partial Class frm_habitacion
     Friend WithEvents BtnGuardar As Button
     Friend WithEvents BtnCancelar As Button
     Friend WithEvents BtnSalir As Button
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents column_hotel As DataGridViewTextBoxColumn
+    Friend WithEvents Huesped As DataGridViewTextBoxColumn
+    Friend WithEvents column_habit As DataGridViewTextBoxColumn
 End Class

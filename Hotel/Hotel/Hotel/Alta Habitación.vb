@@ -37,19 +37,47 @@
     End Sub
 
     Private Function leo_tabla(ByVal nombre_tabla As String) As Data.DataTable
+        'Dim conexion As New Data.OleDb.OleDbConnection
+        'Dim cmd As New Data.OleDb.OleDbCommand
+        'Dim tabla As New Data.DataTable
+
+        'conexion.ConnectionString = Me.string_conexion
+        'conexion.Open()
+        'cmd.Connection = conexion
+        'cmd.CommandType = CommandType.Text
+        'cmd.CommandText = "select * from " & nombre_tabla
+
+        'tabla.Load(cmd.ExecuteReader)
+        'Return tabla
+
+        'Dim conexion As New Data.OleDb.OleDbConnection
+        'Dim cmd As Data.OleDb.OleDbCommand
+        'Dim tabla As Data.DataTable
+
+        'conexion.ConnectionString = Me.string_conexion
+        'conexion.Open()
+        'cmd.Connection = conexion
+        'cmd.CommandType = CommandType.Text
+        'cmd.CommandText = "consulta"
+
+        'tabla.Load(cmd.ExecuteReader)
+        'conexion.Close()
+
         Dim conexion As New Data.OleDb.OleDbConnection
-        Dim cmd As New Data.OleDb.OleDbCommand
-        Dim tabla As New Data.DataTable
+        Dim cmd As Data.OleDb.OleDbCommand
+        Dim tabla As Data.DataTable
 
         conexion.ConnectionString = Me.string_conexion
         conexion.Open()
+
         cmd.Connection = conexion
         cmd.CommandType = CommandType.Text
-        cmd.CommandText = "select * from " & nombre_tabla
+        cmd.CommandText = "consulta"
 
         tabla.Load(cmd.ExecuteReader)
-        Return tabla
+        conexion.Close()
 
+        'Dim conexion As Data.OleDb
     End Function
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
@@ -102,7 +130,7 @@
                     txt_descr_habit.Text = tabla.Rows(0)("descripcion")
                     txtNroHab.Text = tabla.Rows(0)("id_habitacion")
                     cmb_hotel_reg.SelectedValue = tabla.Rows(0)("nombre_hotel")
-
+                    Me.DataGridView1.Rows.Add(tabla.Rows(0)("nombre_hotel"))
                     If tabla.Rows(0)("disponible") = 1 Then
                         chebox_disponible.Checked = True
                     Else
@@ -274,4 +302,5 @@
         carga_combo(Me.cmb_hotel_reg, Me.leo_tabla("HOTELES"), "nombre_hotel", "hotel")
 
     End Sub
+
 End Class

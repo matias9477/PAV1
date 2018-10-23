@@ -21,6 +21,10 @@
         Me.cmb_tipo_doc_reg.Enabled = False
         Me.txt_ciudad.Enabled = False
 
+        Me.txt_numero_hab.Enabled = False
+        Me.cmb_hotel.Enabled = False
+
+
         carga_combo(Me.Cmb_tipo_doc, leo_tabla("TIPOSDOCUMENTOS"), "nombre_tipo", "nombres")
     End Sub
 
@@ -67,10 +71,13 @@
             Else
                 conexion.ConnectionString = Me.string_conexion
                 conexion.Open()
-                consulta = "select m.*,t.nombre_tipo from HUESPEDES m "
-                consulta &= "join TIPOSDOCUMENTOS t on m.tipo_doc=t.id_tipo_doc "
-                consulta &= "where m.num_doc= " & Me.Txt_nro_doc.Text
-                consulta &= " and  t.nombre_tipo = '" & Me.Cmb_tipo_doc.SelectedValue & "'"
+                consulta = "select h.*,t.nombre_tipo,l.id_hotel,l.id_habitacion, o.fecha_alojamiento, ho.nombre_hotel from HUESPEDES h "
+                consulta &= " join TIPOSDOCUMENTOS t on t.id_tipo_doc= h.tipo_doc "
+                consulta &= " join HUESPEDXHABITACION o on o.pasaporte=h.num_doc "
+                consulta &= " join HABITACIONES l on l.id_habitacion=o.id_habitacion "
+                consulta &= " join HOTELES ho on ho.id_hotel=o.id_hotel "
+                consulta &= " where h.num_doc= " & Me.Txt_nro_doc.Text
+                consulta &= " And  t.nombre_tipo = '" & Me.Cmb_tipo_doc.SelectedValue & "'"
 
                 cmd.CommandType = CommandType.Text
                 cmd.CommandText = consulta
@@ -94,12 +101,16 @@
                     Me.txt_ciudad.Enabled = True
                     BtnNuevo.Enabled = True
                     carga_combo(Me.cmb_tipo_doc_reg, leo_tabla("TIPOSDOCUMENTOS"), "nombre_tipo", "nombres")
+                    carga_combo(Me.cmb_hotel, Me.leo_tabla("HOTELES"), "nombre_hotel", "hotel")
                     TxtNombre.Text = tabla.Rows(0)("nombre")
                     TxtApellido.Text = tabla.Rows(0)("apellido")
                     cmb_tipo_doc_reg.SelectedValue = tabla.Rows(0)("nombre_tipo")
                     txt_nro_doc_reg.Text = tabla.Rows(0)("num_doc")
                     txt_ciudad.Text = tabla.Rows(0)("ciudad")
                     TxtNroTarjeta.Text = tabla.Rows(0)("numero_tarjeta")
+                    txt_numero_hab.Text = tabla.Rows(0)("id_habitacion")
+                    cmb_hotel.SelectedValue = tabla.Rows(0)("nombre_hotel")
+                    DateTimePicker2.Value = tabla.Rows(0)("fecha_alojamiento")
 
                 End If
             End If
@@ -146,6 +157,7 @@
                 actual.SelectedIndex = -1
             End If
         Next
+        carga_combo(Me.cmb_tipo_doc_reg, leo_tabla("TIPOSDOCUMENTOS"), "nombre_tipo", "nombre")
         Me.accion = estado.insertar
         Me.BtnNuevo.Enabled = True
         Me.BtnCancelar.Enabled = True
@@ -240,20 +252,13 @@
                     modificacion = "Declare @valor int "
                     modificacion &= " select @valor=id_tipo_doc from TIPOSDOCUMENTOS"
                     modificacion &= " where nombre_tipo= '" & Me.cmb_tipo_doc_reg.SelectedValue & "'"
-                    modificacion &= " Declare @valor2 int "
-                    modificacion &= " select @valor2=id_hotel from HOTELES"
-                    modificacion &= " where nombre_hotel = '" & Me.Cmb_hotel.SelectedValue & "'"
-                    modificacion &= " Declare @valor3 int "
-                    modificacion &= " select @valor3=id_puesto from PUESTOS"
-                    modificacion &= " where descripcion = '" & Me.CmbPuesto.SelectedValue & "'"
-                    modificacion &= " insert into EMPLEADOS(apellido,nombre,fecha_ingreso,id_hotel,tipo_doc,num_doc,id_puesto)"
-                    modificacion &= " values('" & Me.Txt_apellido.Text & "'"
-                    modificacion &= ",'" & Me.Txt_nombre.Text & "'"
-                    modificacion &= ",'" & Format(Me.DateTimePicker1.Value, "yyyy/dd/MM") & "'"
-                    modificacion &= ",@valor2"
-                    modificacion &= ",@valor"
-                    modificacion &= ",'" & Me.txt_nro_doc_reg.Text & "'"
-                    modificacion &= ",@valor3)"
+                    modificacion &= " insert into HUESPEDES(tipo_doc,num_doc,nombre,apellido,ciudad,numero_tarjeta)"
+                    modificacion &= " values(@valor"
+                    modificacion &= "," & Me.txt_nro_doc_reg.Text
+                    modificacion &= ",'" & Me.TxtNombre.Text & "'"
+                    modificacion &= ",'" & Me.TxtApellido.Text & "'"
+                    modificacion &= ",'" & Me.txt_ciudad.Text & "'"
+                    modificacion &= "," & Me.TxtNroTarjeta.Text & ")"
                     cmd.CommandType = CommandType.Text
                     cmd.CommandText = modificacion
                     cmd.Connection = conexion
@@ -275,12 +280,12 @@
                 modificacion &= " Declare @valor2 int "
                 modificacion &= " select @valor2=id_tipo_doc from TIPOSDOCUMENTOS"
                 modificacion &= " where nombre_tipo= '" & Me.cmb_tipo_doc_reg.SelectedValue & "'"
-                modificacion &= " Update Huesped "
+                modificacion &= " Update HUESPEDES "
                 modificacion &= " Set nombre = '" & Me.TxtNombre.Text & "'"
                 modificacion &= ", apellido = '" & Me.TxtApellido.Text & "'"
-                modificacion &= ", id_tipo_doc = @valor2"
-                modificacion &= ", nro_doc = '" & Me.Txt_nro_doc.Text & "'"
-                modificacion &= ", id_ciudad = " & Me.txt_ciudad.Text & "'"
+                modificacion &= ", tipo_doc = @valor2"
+                modificacion &= ", nUM_doc = '" & Me.Txt_nro_doc.Text & "'"
+                modificacion &= ", ciudad = '" & Me.txt_ciudad.Text & "'"
                 modificacion &= ", numero_tarjeta = " & Me.TxtNroTarjeta.Text
                 modificacion &= " where tipo_doc = @valor "
                 modificacion &= " and num_doc =" & Me.Txt_nro_doc.Text
@@ -293,6 +298,10 @@
             End If
         End If
 
+
+    End Sub
+
+    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
 
     End Sub
 End Class
